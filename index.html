@@ -360,7 +360,7 @@
             background: linear-gradient(135deg, #e65100, #ff9800);
         }
         
-        /* تصميم إنستاباي */
+        /* تصميم إنستاباي محسّن */
         .instapay-item {
             background: linear-gradient(135deg, #fff3e0, #ffecb3);
             border: 2px solid #ffb74d;
@@ -426,6 +426,7 @@
             justify-content: center;
             gap: 12px;
             transition: all 0.4s ease;
+            text-align: center;
         }
         
         .instapay-btn:hover {
@@ -639,6 +640,11 @@
                 font-size: 15px;
                 padding: 12px;
             }
+            
+            .instapay-btn {
+                font-size: 14px;
+                padding: 12px;
+            }
         }
         
         /* تأثيرات */
@@ -835,7 +841,8 @@
                         <div class="instapay-username">elqiser2@instapay</div>
                     </div>
                     
-                    <a href="instapay://send?username=elqiser2@instapay" class="instapay-btn">
+                    <!-- الرابط المباشر لإنستاباي -->
+                    <a href="https://ipn.eg/S/elqiser2/instapay/2uNC60" class="instapay-btn">
                         Open Instapay App
                     </a>
                 </div>
@@ -883,23 +890,6 @@
                 profileImage.style.display = 'none';
                 defaultAvatar.style.display = 'block';
             };
-        });
-        
-        // تحسين تجربة إنستاباي
-        document.querySelectorAll('a[href*="instapay"]').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const instapayUrl = "instapay://send?username=elqiser2@instapay";
-                const webUrl = "https://instapay.com";
-                
-                window.location.href = instapayUrl;
-                
-                setTimeout(() => {
-                    if (document.hasFocus()) {
-                        window.open(webUrl, '_blank');
-                    }
-                }, 1000);
-            });
         });
         
         // تتبع الزيارات
