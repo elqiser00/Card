@@ -4,9 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Card - Alber Samir</title>
-    <!-- إضافة Font Awesome للأيقونات -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- إضافة cropper.js لضبط الصور -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
     <style>
         * {
@@ -686,26 +684,6 @@
         #photoUpload, #cropperUpload {
             display: none;
         }
-        
-        .github-info {
-            background: #f5f5f5;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-            font-size: 14px;
-            color: #333;
-            text-align: center;
-            border-left: 4px solid #24292e;
-        }
-        
-        .github-info code {
-            background: #24292e;
-            color: white;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-family: monospace;
-            margin: 0 5px;
-        }
     </style>
 </head>
 <body>
@@ -713,8 +691,9 @@
         <div class="card-header">
             <div class="profile-container">
                 <div class="profile-frame">
-                    <!-- الصورة ستُحمّل من GitHub -->
-                    <img id="profileImage" class="profile-image" src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/profile-images/alber-profile.jpg" alt="Alber Samir" onerror="this.onerror=null; this.src=''; document.getElementById('defaultAvatar').style.display='block';">
+                    <img id="profileImage" class="profile-image" 
+                         src="https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg" 
+                         alt="Alber Samir">
                     <div id="defaultAvatar" class="default-avatar">👤</div>
                 </div>
                 <div class="upload-overlay" id="uploadTrigger">
@@ -736,13 +715,6 @@
         </div>
         
         <div class="card-body">
-            <!-- معلومات GitHub -->
-            <div class="github-info">
-                <p><strong>📁 GitHub Folder:</strong> <code>profile-images/</code></p>
-                <p><strong>📄 Image Filename:</strong> <code>alber-profile.jpg</code></p>
-                <p>Upload your photo to GitHub repository in the folder above</p>
-            </div>
-            
             <!-- أرقام الهاتف -->
             <div class="section-title">
                 <span>📱</span>
@@ -897,7 +869,7 @@
             </div>
             
             <div class="crop-instructions">
-                <p>💡 <strong>Instructions:</strong> Drag the corners to crop. Use buttons to rotate. When done, download and upload to GitHub.</p>
+                <p>💡 <strong>Instructions:</strong> Drag the corners to crop. Use buttons to rotate. When done, click Download Image.</p>
             </div>
             
             <div class="image-preview-container">
@@ -920,13 +892,6 @@
                 <button class="control-btn" id="zoomOut">
                     <i class="fas fa-search-minus"></i> Zoom Out
                 </button>
-            </div>
-            
-            <div class="github-info">
-                <p><strong>GitHub Upload Instructions:</strong></p>
-                <p>1. Click "Download Image" to save the adjusted photo</p>
-                <p>2. Upload to: <code>https://github.com/YOUR_USERNAME/YOUR_REPO/blob/main/profile-images/alber-profile.jpg</code></p>
-                <p>3. Make sure the filename is exactly: <code>alber-profile.jpg</code></p>
             </div>
             
             <div class="modal-actions">
@@ -953,6 +918,9 @@
         const imagePreview = document.getElementById('imagePreview');
         const cancelEditBtn = document.getElementById('cancelEdit');
         const downloadImageBtn = document.getElementById('downloadImage');
+        
+        // رابط صورتك على GitHub
+        const githubImageUrl = 'https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg';
         
         // متغيرات Cropper
         let cropper = null;
@@ -989,18 +957,11 @@
                 }
                 
                 cropper = new Cropper(imagePreview, {
-                    aspectRatio: 1, // نسبة مربعة للصور الشخصية
+                    aspectRatio: 1,
                     viewMode: 1,
                     autoCropArea: 0.8,
                     responsive: true,
-                    restore: true,
-                    guides: true,
-                    center: true,
-                    highlight: false,
-                    cropBoxMovable: true,
-                    cropBoxResizable: true,
-                    toggleDragModeOnDblclick: false,
-                    background: false
+                    restore: true
                 });
             };
         }
@@ -1068,47 +1029,46 @@
                     // حفظ في localStorage كنسخة مؤقتة
                     localStorage.setItem('alber_profile_image_temp', imageData);
                     
+                    // تحديث الصورة مباشرة
+                    profileImage.src = imageData;
+                    
                     // عرض رسالة للمستخدم
-                    alert('✅ Image downloaded! Please upload it to GitHub in the "profile-images" folder with filename "alber-profile.jpg"');
+                    alert('✅ Image downloaded successfully!');
                     
                     // إغلاق المحرر
                     imageEditorModal.style.display = 'none';
-                    cropper.destroy();
-                    cropper = null;
+                    if (cropper) {
+                        cropper.destroy();
+                        cropper = null;
+                    }
                 }
             }
         });
         
-        // تحميل الصورة من GitHub عند فتح الصفحة
+        // تحميل الصورة عند فتح الصفحة
         window.addEventListener('load', () => {
             // أولاً: تحقق من وجود صورة مؤقتة في localStorage
             const tempImage = localStorage.getItem('alber_profile_image_temp');
+            
             if (tempImage) {
+                // استخدام الصورة المؤقتة
                 profileImage.src = tempImage;
                 profileImage.style.display = 'block';
                 defaultAvatar.style.display = 'none';
-            }
-            // إذا لم توجد صورة مؤقتة، حاول تحميلها من GitHub
-            else {
-                // رابط الصورة على GitHub - غير هذا الرابط بمعلوماتك
-                const githubImageUrl = 'https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/profile-images/alber-profile.jpg';
+            } else {
+                // استخدام الصورة من GitHub مع timestamp لمنع التخزين المؤقت
+                profileImage.src = githubImageUrl + '?t=' + new Date().getTime();
                 
-                // تحميل الصورة من GitHub مع التحقق من وجودها
-                fetch(githubImageUrl, { method: 'HEAD' })
-                    .then(response => {
-                        if (response.ok) {
-                            profileImage.src = githubImageUrl + '?t=' + new Date().getTime();
-                            profileImage.style.display = 'block';
-                            defaultAvatar.style.display = 'none';
-                        } else {
-                            throw new Error('Image not found on GitHub');
-                        }
-                    })
-                    .catch(error => {
-                        console.log('Using default avatar: ' + error.message);
-                        profileImage.style.display = 'none';
-                        defaultAvatar.style.display = 'block';
-                    });
+                // التحقق من نجاح تحميل الصورة
+                profileImage.onload = function() {
+                    profileImage.style.display = 'block';
+                    defaultAvatar.style.display = 'none';
+                };
+                
+                profileImage.onerror = function() {
+                    profileImage.style.display = 'none';
+                    defaultAvatar.style.display = 'block';
+                };
             }
         });
         
@@ -1147,19 +1107,14 @@
             
             setTimeout(() => {
                 const instapayItem = document.querySelector('.instapay-item');
-                instapayItem.style.opacity = '0';
-                instapayItem.style.transform = 'translateY(20px)';
-                instapayItem.style.animation = 'fadeInUp 0.5s ease forwards';
-                instapayItem.style.animationDelay = '0.4s';
+                if (instapayItem) {
+                    instapayItem.style.opacity = '0';
+                    instapayItem.style.transform = 'translateY(20px)';
+                    instapayItem.style.animation = 'fadeInUp 0.5s ease forwards';
+                    instapayItem.style.animationDelay = '0.4s';
+                }
             }, 100);
         }, 500);
-        
-        // رسالة ترحيب في الكونسول
-        console.log('%c🌟 Alber Samir Digital Card', 'color: #0d47a1; font-size: 18px; font-weight: bold;');
-        console.log('%c💼 Profession: IT | Data Entry | Software Technician', 'color: #2196f3;');
-        console.log('%c📞 Primary: +20 127 627 2065', 'color: #25d366;');
-        console.log('%c💳 Instapay: elqiser2@instapay', 'color: #ff9800;');
-        console.log('%c📘 Facebook: https://www.facebook.com/ellqiser', 'color: #1877f2;');
         
         // حفظ بيانات الزيارة
         const visitData = {
