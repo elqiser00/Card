@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بطاقتي الرقمية</title>
+    <title>Digital Card - Alber Samir</title>
+    <!-- إضافة Font Awesome للأيقونات -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- إضافة cropper.js لضبط الصور -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
     <style>
         * {
             margin: 0;
@@ -13,7 +17,7 @@
         
         body {
             font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -23,25 +27,19 @@
         }
         
         .business-card {
-            background: rgba(255, 255, 255, 0.98);
+            background: white;
             border-radius: 25px;
             width: 100%;
-            max-width: 420px;
-            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+            max-width: 450px;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .business-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 35px 90px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
         }
         
         .card-header {
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            background: linear-gradient(135deg, #0d47a1, #1565c0);
             color: white;
-            padding: 45px 30px;
+            padding: 40px 30px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -50,450 +48,1126 @@
         .card-header::before {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 30px 30px;
-            opacity: 0.2;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
+            background-size: cover;
+            opacity: 0.3;
         }
         
-        .profile-img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            border: 6px solid rgba(255, 255, 255, 0.4);
+        .profile-container {
+            position: relative;
+            width: 160px;
+            height: 160px;
             margin: 0 auto 25px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+        
+        .profile-frame {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 6px solid rgba(255, 255, 255, 0.8);
+            background: linear-gradient(135deg, #2196f3, #0d47a1);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 60px;
-            color: white;
+            overflow: hidden;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
             position: relative;
             z-index: 2;
-            transition: transform 0.3s ease;
         }
         
-        .profile-img:hover {
-            transform: scale(1.05);
+        .profile-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .default-avatar {
+            font-size: 70px;
+            color: white;
+        }
+        
+        .upload-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            font-size: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 3;
+            border-radius: 0 0 80px 80px;
+        }
+        
+        .upload-overlay:hover {
+            background: rgba(0, 0, 0, 0.9);
+        }
+        
+        /* نافذة ضبط الصورة */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow: auto;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+        
+        .modal-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .modal-header h3 {
+            color: #0d47a1;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .modal-header p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .image-preview-container {
+            width: 100%;
+            height: 300px;
+            margin: 20px 0;
+            border: 2px dashed #ddd;
+            border-radius: 15px;
+            overflow: hidden;
+            background: #f8fbff;
+        }
+        
+        #imagePreview {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        
+        .crop-instructions {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            font-size: 14px;
+            color: #0d47a1;
+            text-align: center;
+        }
+        
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        .control-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            background: #0d47a1;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .control-btn:hover {
+            background: #1565c0;
+            transform: translateY(-3px);
+        }
+        
+        .control-btn.rotate-btn {
+            background: #ff9800;
+        }
+        
+        .control-btn.rotate-btn:hover {
+            background: #e65100;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            justify-content: center;
+        }
+        
+        .modal-btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            max-width: 200px;
+        }
+        
+        .save-btn {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+        }
+        
+        .save-btn:hover {
+            background: linear-gradient(135deg, #2e7d32, #4caf50);
+            transform: translateY(-3px);
+        }
+        
+        .cancel-btn {
+            background: #f5f5f5;
+            color: #666;
+        }
+        
+        .cancel-btn:hover {
+            background: #e0e0e0;
         }
         
         .name {
-            font-size: 34px;
-            font-weight: 900;
+            font-size: 32px;
+            font-weight: 800;
             margin-bottom: 10px;
             letter-spacing: 0.5px;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             position: relative;
             z-index: 2;
         }
         
         .title {
-            font-size: 20px;
+            font-size: 16px;
             opacity: 0.95;
             font-weight: 400;
             position: relative;
             z-index: 2;
+            line-height: 1.5;
+        }
+        
+        .profession-badges {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .badge {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
         
         .card-body {
-            padding: 40px 35px;
+            padding: 35px 30px;
+        }
+        
+        .section-title {
+            color: #0d47a1;
+            font-size: 18px;
+            font-weight: 700;
+            margin: 25px 0 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #e3f2fd;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-title:first-child {
+            margin-top: 0;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 18px;
+            margin-bottom: 15px;
         }
         
         .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 28px;
-            padding: 18px 20px;
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            background: #f8fbff;
             border-radius: 18px;
-            transition: all 0.3s ease;
-            border-left: 6px solid #2a5298;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .contact-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 5px;
-            height: 100%;
-            background: linear-gradient(to bottom, #2a5298, #1e3c72);
-            opacity: 0.7;
+            padding: 20px;
+            border: 2px solid #e3f2fd;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
         }
         
         .contact-item:hover {
-            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-            transform: translateX(8px) translateY(-3px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(13, 71, 161, 0.15);
+            border-color: #2196f3;
+            background: white;
         }
         
         .contact-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, #2a5298, #1e3c72);
-            border-radius: 15px;
+            width: 55px;
+            height: 55px;
+            border-radius: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-left: 18px;
             color: white;
-            font-size: 28px;
-            box-shadow: 0 6px 15px rgba(42, 82, 152, 0.3);
+            font-size: 24px;
             flex-shrink: 0;
+            box-shadow: 0 6px 20px rgba(33, 150, 243, 0.3);
+            margin-top: 8px;
         }
         
-        .contact-info h3 {
-            color: #1e3c72;
-            font-size: 16px;
+        /* أيقونات خاصة */
+        .icon-whatsapp {
+            background: linear-gradient(135deg, #25d366, #128c7e) !important;
+        }
+        
+        .icon-call {
+            background: linear-gradient(135deg, #4caf50, #2e7d32) !important;
+        }
+        
+        .icon-email {
+            background: linear-gradient(135deg, #ff9800, #e65100) !important;
+        }
+        
+        .icon-instapay {
+            background: linear-gradient(135deg, #ff9800, #e65100) !important;
+        }
+        
+        .icon-facebook {
+            background: linear-gradient(135deg, #1877f2, #0d5cb6) !important;
+        }
+        
+        /* أيقونة إنستاباي مخصصة */
+        .instapay-icon {
+            position: relative;
+            background: linear-gradient(135deg, #ff9800, #e65100) !important;
+            background-image: url('https://play-lh.googleusercontent.com/Pv1p8v-KJq4Z_LLOjQjBZpK8DNJg4Zb5aNOQY7WfoiHR4Gfs165Z1TTNMThZ883Yfg=w480-h960-rw') !important;
+            background-size: contain !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+        }
+        
+        .instapay-icon::before {
+            display: none;
+        }
+        
+        .contact-details {
+            flex: 1;
+        }
+        
+        .contact-type {
+            font-size: 14px;
+            color: #666;
             margin-bottom: 8px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
+            font-weight: 600;
         }
         
-        .contact-info p {
-            color: #2c3e50;
-            font-size: 20px;
+        .phone-number {
+            font-size: 19px;
             font-weight: 800;
+            color: #0d47a1;
             direction: ltr;
             text-align: right;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            font-family: 'Courier New', monospace;
         }
         
-        .action-buttons {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+        .country-flag {
+            display: inline-block;
+            margin-left: 12px;
+            font-size: 20px;
+            vertical-align: middle;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            gap: 12px;
+            margin-top: 12px;
+        }
+        
+        .contact-btn {
+            padding: 10px 18px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            flex: 1;
+            justify-content: center;
+            min-width: 0;
+        }
+        
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+            color: white;
+        }
+        
+        .call-btn {
+            background: linear-gradient(135deg, #4caf50, #2e7d32);
+            color: white;
+        }
+        
+        .email-item {
+            background: #fff8e1;
+            border-color: #ffb74d;
+        }
+        
+        /* تصميم إنستاباي */
+        .instapay-item {
+            background: linear-gradient(135deg, #fff3e0, #ffecb3);
+            border: 2px solid #ffb74d;
+            padding: 20px;
+            display: flex;
+            align-items: flex-start;
             gap: 18px;
-            margin-top: 35px;
         }
         
-        .btn {
-            padding: 18px;
-            border-radius: 15px;
-            border: none;
+        .instapay-item:hover {
+            border-color: #ff9800;
+            box-shadow: 0 15px 35px rgba(255, 152, 0, 0.2);
+        }
+        
+        .instapay-details {
+            flex: 1;
+        }
+        
+        .instapay-type {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .instapay-username-box {
+            background: white;
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin: 8px 0 15px 0;
+            border: 2px dashed #ff9800;
+            text-align: center;
+        }
+        
+        .instapay-username-label {
+            font-size: 12px;
+            color: #ff9800;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .instapay-username {
+            font-size: 20px;
+            font-weight: 900;
+            color: #e65100;
+            direction: ltr;
+            letter-spacing: 1px;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+        }
+        
+        .instapay-btn {
+            background: linear-gradient(135deg, #ff9800, #e65100);
+            color: white;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 16px;
             font-weight: 800;
-            font-size: 17px;
+            text-decoration: none;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
-            cursor: pointer;
             transition: all 0.4s ease;
-            text-decoration: none;
-            color: white;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-            position: relative;
-            overflow: hidden;
         }
         
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-            transition: 0.5s;
+        .instapay-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 152, 0, 0.4);
+            background: linear-gradient(135deg, #e65100, #ff9800);
         }
         
-        .btn:hover::before {
-            left: 100%;
+        .instapay-btn::before {
+            content: "💳";
+            font-weight: 900;
+            font-size: 20px;
+            font-family: 'Arial', sans-serif;
         }
         
-        .btn-call {
-            background: linear-gradient(135deg, #00b09b, #96c93d);
-        }
-        
-        .btn-whatsapp {
-            background: linear-gradient(135deg, #25d366, #128c7e);
-        }
-        
-        .btn-email {
-            background: linear-gradient(135deg, #ff7e5f, #feb47b);
-        }
-        
-        .btn-social {
-            background: linear-gradient(135deg, #8a2387, #f27121);
-        }
-        
-        .btn:hover {
-            transform: translateY(-5px) scale(1.03);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-        
-        .btn:active {
-            transform: translateY(-2px) scale(1.01);
-        }
-        
-        .social-media {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
+        /* Facebook Button Only */
+        .facebook-section {
             margin-top: 30px;
-            padding-top: 30px;
-            border-top: 2px solid rgba(42, 82, 152, 0.1);
+            text-align: center;
         }
         
-        .social-icon {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #f1f3f5, #e9ecef);
-            display: flex;
+        .facebook-btn {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: #2a5298;
-            transition: all 0.3s ease;
+            gap: 15px;
+            background: linear-gradient(135deg, #1877f2, #0d5cb6);
+            color: white;
+            padding: 18px 35px;
+            border-radius: 15px;
             text-decoration: none;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            position: relative;
+            font-size: 18px;
+            font-weight: 700;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 25px rgba(24, 119, 242, 0.3);
         }
         
-        .social-icon::after {
-            content: attr(title);
-            position: absolute;
-            bottom: -40px;
-            background: rgba(0,0,0,0.8);
-            color: white;
-            padding: 5px 10px;
-            border-radius: 5px;
-            font-size: 12px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            white-space: nowrap;
+        .facebook-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(24, 119, 242, 0.4);
+            background: linear-gradient(135deg, #0d5cb6, #1877f2);
         }
         
-        .social-icon:hover::after {
-            opacity: 1;
-        }
-        
-        .social-icon:hover {
-            background: linear-gradient(135deg, #2a5298, #1e3c72);
-            color: white;
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 15px 30px rgba(42, 82, 152, 0.3);
+        .facebook-btn i {
+            font-size: 28px;
         }
         
         .card-footer {
             text-align: center;
-            padding: 25px;
-            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            color: #4a5568;
-            font-size: 15px;
-            border-top: 2px solid rgba(42, 82, 152, 0.1);
-        }
-        
-        .card-footer p {
-            margin: 5px 0;
+            padding: 20px;
+            background: #f8fbff;
+            color: #5c6bc0;
+            font-size: 13px;
+            font-weight: 500;
+            border-top: 3px solid #e3f2fd;
         }
         
         @media (max-width: 480px) {
-            .action-buttons {
-                grid-template-columns: 1fr;
-            }
-            
             .card-header {
                 padding: 35px 25px;
             }
             
+            .profile-container {
+                width: 140px;
+                height: 140px;
+            }
+            
+            .profile-frame {
+                width: 140px;
+                height: 140px;
+            }
+            
             .name {
-                font-size: 30px;
+                font-size: 28px;
             }
             
-            .contact-item {
-                padding: 15px;
+            .card-body {
+                padding: 25px 20px;
+            }
+            
+            .contact-buttons {
                 flex-direction: column;
-                text-align: center;
             }
             
-            .contact-icon {
-                margin-left: 0;
-                margin-bottom: 15px;
+            .facebook-btn {
+                padding: 16px 25px;
+                font-size: 16px;
+            }
+            
+            .instapay-username {
+                font-size: 18px;
+            }
+            
+            .instapay-btn {
+                padding: 12px;
+                font-size: 15px;
+            }
+            
+            .instapay-icon {
+                background-size: 60% !important;
+            }
+            
+            .modal-content {
+                padding: 20px;
+            }
+            
+            .image-preview-container {
+                height: 250px;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+            }
+            
+            .modal-btn {
+                max-width: 100%;
             }
         }
         
-        /* أيقونات بدون Font Awesome */
-        .icon-phone::before { content: "📞"; }
-        .icon-email::before { content: "✉️"; }
-        .icon-briefcase::before { content: "💼"; }
-        .icon-user::before { content: "👤"; }
-        .icon-whatsapp::before { content: "💬"; }
-        .icon-share::before { content: "🌐"; }
-        .icon-facebook::before { content: "📘"; }
-        .icon-twitter::before { content: "🐦"; }
-        .icon-linkedin::before { content: "💼"; }
-        .icon-instagram::before { content: "📷"; }
+        /* تأثيرات */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .business-card {
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .profile-frame {
+            animation: pulse 4s infinite;
+        }
+        
+        @keyframes glow {
+            0% { box-shadow: 0 0 10px rgba(255, 152, 0, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(255, 152, 0, 0.8); }
+            100% { box-shadow: 0 0 10px rgba(255, 152, 0, 0.5); }
+        }
+        
+        .instapay-item {
+            animation: glow 3s infinite;
+        }
+        
+        @keyframes facebookGlow {
+            0% { box-shadow: 0 0 10px rgba(24, 119, 242, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(24, 119, 242, 0.8); }
+            100% { box-shadow: 0 0 10px rgba(24, 119, 242, 0.5); }
+        }
+        
+        .facebook-btn {
+            animation: facebookGlow 3s infinite;
+        }
+        
+        /* إخفاء حقل رفع الصورة */
+        #photoUpload, #cropperUpload {
+            display: none;
+        }
+        
+        .github-info {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #333;
+            text-align: center;
+            border-left: 4px solid #24292e;
+        }
+        
+        .github-info code {
+            background: #24292e;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 0 5px;
+        }
     </style>
 </head>
 <body>
     <div class="business-card">
         <div class="card-header">
-            <div class="profile-img">
-                <span class="icon-user"></span>
+            <div class="profile-container">
+                <div class="profile-frame">
+                    <!-- الصورة ستُحمّل من GitHub -->
+                    <img id="profileImage" class="profile-image" src="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/profile-images/alber-profile.jpg" alt="Alber Samir" onerror="this.onerror=null; this.src=''; document.getElementById('defaultAvatar').style.display='block';">
+                    <div id="defaultAvatar" class="default-avatar">👤</div>
+                </div>
+                <div class="upload-overlay" id="uploadTrigger">
+                    <span>📷</span> Edit Photo
+                </div>
             </div>
-            <h1 class="name">أحمد محمد</h1>
-            <p class="title">مطور ويب | مصمم UI/UX</p>
+            
+            <h1 class="name">Alber Samir</h1>
+            <p class="title">IT Specialist | Data Entry Operator | Computer Software Technician</p>
+            
+            <div class="profession-badges">
+                <div class="badge">IT Professional</div>
+                <div class="badge">Data Entry</div>
+                <div class="badge">Software Technician</div>
+            </div>
+            
+            <input type="file" id="photoUpload" accept="image/*">
+            <input type="file" id="cropperUpload" accept="image/*">
         </div>
         
         <div class="card-body">
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <span class="icon-phone"></span>
-                </div>
-                <div class="contact-info">
-                    <h3>رقم الهاتف</h3>
-                    <p>+20 101 234 5678</p>
-                </div>
+            <!-- معلومات GitHub -->
+            <div class="github-info">
+                <p><strong>📁 GitHub Folder:</strong> <code>profile-images/</code></p>
+                <p><strong>📄 Image Filename:</strong> <code>alber-profile.jpg</code></p>
+                <p>Upload your photo to GitHub repository in the folder above</p>
             </div>
             
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <span class="icon-email"></span>
-                </div>
-                <div class="contact-info">
-                    <h3>البريد الإلكتروني</h3>
-                    <p>ahmed.mohamed@example.com</p>
-                </div>
+            <!-- أرقام الهاتف -->
+            <div class="section-title">
+                <span>📱</span>
+                <span>Contact Numbers</span>
             </div>
             
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <span class="icon-briefcase"></span>
+            <div class="contact-grid">
+                <!-- Egypt Number 1 -->
+                <div class="contact-item">
+                    <div class="contact-icon icon-whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="contact-details">
+                        <div class="contact-type">Primary Number (Egypt)</div>
+                        <div class="phone-number">
+                            +20 127 627 2065
+                            <span class="country-flag">🇪🇬</span>
+                        </div>
+                        <div class="contact-buttons">
+                            <a href="https://wa.me/201276272065" class="contact-btn whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </a>
+                            <a href="tel:+201276272065" class="contact-btn call-btn">
+                                <i class="fas fa-phone"></i>
+                                Call
+                            </a>
+                        </div>
+                    </div>
                 </div>
-                <div class="contact-info">
-                    <h3>التخصص والخدمات</h3>
-                    <p>تطوير مواقع وتطبيقات ويب متكاملة</p>
-                </div>
-            </div>
-            
-            <div class="action-buttons">
-                <a href="tel:+201012345678" class="btn btn-call">
-                    <span class="icon-phone"></span>
-                    <span>اتصل بي</span>
-                </a>
                 
-                <a href="https://wa.me/201012345678" class="btn btn-whatsapp">
-                    <span class="icon-whatsapp"></span>
-                    <span>واتساب</span>
-                </a>
+                <!-- Egypt Number 2 -->
+                <div class="contact-item">
+                    <div class="contact-icon icon-whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="contact-details">
+                        <div class="contact-type">Secondary Number (Egypt)</div>
+                        <div class="phone-number">
+                            +20 106 078 2884
+                            <span class="country-flag">🇪🇬</span>
+                        </div>
+                        <div class="contact-buttons">
+                            <a href="https://wa.me/201060782884" class="contact-btn whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </a>
+                            <a href="tel:+201060782884" class="contact-btn call-btn">
+                                <i class="fas fa-phone"></i>
+                                Call
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 
-                <a href="mailto:ahmed.mohamed@example.com" class="btn btn-email">
-                    <span class="icon-email"></span>
-                    <span>إرسال إيميل</span>
-                </a>
-                
-                <a href="https://linktr.ee/ahmed" class="btn btn-social">
-                    <span class="icon-share"></span>
-                    <span>جميع الروابط</span>
-                </a>
+                <!-- UAE Number -->
+                <div class="contact-item">
+                    <div class="contact-icon icon-whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div class="contact-details">
+                        <div class="contact-type">UAE Number</div>
+                        <div class="phone-number">
+                            +971 58 840 5335
+                            <span class="country-flag">🇦🇪</span>
+                        </div>
+                        <div class="contact-buttons">
+                            <a href="https://wa.me/971588405335" class="contact-btn whatsapp-btn">
+                                <i class="fab fa-whatsapp"></i>
+                                WhatsApp
+                            </a>
+                            <a href="tel:+971588405335" class="contact-btn call-btn">
+                                <i class="fas fa-phone"></i>
+                                Call
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </div>
             
-            <div class="social-media">
-                <a href="https://facebook.com/yourprofile" class="social-icon" title="Facebook">
-                    <span class="icon-facebook"></span>
-                </a>
-                <a href="https://twitter.com/yourprofile" class="social-icon" title="Twitter">
-                    <span class="icon-twitter"></span>
-                </a>
-                <a href="https://linkedin.com/in/yourprofile" class="social-icon" title="LinkedIn">
-                    <span class="icon-linkedin"></span>
-                </a>
-                <a href="https://instagram.com/yourprofile" class="social-icon" title="Instagram">
-                    <span class="icon-instagram"></span>
+            <!-- Email -->
+            <div class="section-title">
+                <span>✉️</span>
+                <span>Email</span>
+            </div>
+            
+            <div class="contact-item email-item">
+                <div class="contact-icon icon-email">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <div class="contact-details">
+                    <div class="contact-type">Official Email</div>
+                    <div class="phone-number">albersamir2@gmail.com</div>
+                    <div class="contact-buttons">
+                        <a href="mailto:albersamir2@gmail.com" class="contact-btn" style="background:linear-gradient(135deg,#ff9800,#e65100);color:white;width:100%">
+                            <i class="fas fa-envelope"></i>
+                            Send Email
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Instapay -->
+            <div class="section-title">
+                <span>💳</span>
+                <span>Quick Payment via Instapay</span>
+            </div>
+            
+            <div class="instapay-item">
+                <div class="contact-icon instapay-icon">
+                    <!-- الأيقونة الجديدة ستظهر من CSS -->
+                </div>
+                <div class="instapay-details">
+                    <div class="instapay-type">Instapay Username</div>
+                    
+                    <div class="instapay-username-box">
+                        <div class="instapay-username-label">Send payment to:</div>
+                        <div class="instapay-username">elqiser2@instapay</div>
+                    </div>
+                    
+                    <a href="instapay://send?username=elqiser2@instapay" class="instapay-btn">
+                        Open Instapay App
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Facebook Only -->
+            <div class="section-title">
+                <span>🌐</span>
+                <span>Social Media</span>
+            </div>
+            
+            <div class="facebook-section">
+                <a href="https://www.facebook.com/ellqiser" class="facebook-btn">
+                    <i class="fab fa-facebook-square"></i>
+                    <span>Visit Facebook Profile</span>
                 </a>
             </div>
         </div>
         
         <div class="card-footer">
-            <p>© 2024 - البطاقة الرقمية الشخصية</p>
-            <p>تاريخ الإنشاء: <span id="currentDate"></span></p>
-            <p>تمت الزيارة <span id="visitCount">0</span> مرة</p>
+            <p>Digital Business Card</p>
         </div>
     </div>
     
+    <!-- نافذة ضبط الصورة -->
+    <div class="modal-overlay" id="imageEditorModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📷 Adjust Your Photo</h3>
+                <p>Drag to crop, rotate, and adjust your profile photo</p>
+            </div>
+            
+            <div class="crop-instructions">
+                <p>💡 <strong>Instructions:</strong> Drag the corners to crop. Use buttons to rotate. When done, download and upload to GitHub.</p>
+            </div>
+            
+            <div class="image-preview-container">
+                <img id="imagePreview" alt="Image Preview">
+            </div>
+            
+            <div class="controls">
+                <button class="control-btn" id="rotateLeft">
+                    <i class="fas fa-undo"></i> Rotate Left
+                </button>
+                <button class="control-btn" id="rotateRight">
+                    <i class="fas fa-redo"></i> Rotate Right
+                </button>
+                <button class="control-btn rotate-btn" id="resetCrop">
+                    <i class="fas fa-sync-alt"></i> Reset
+                </button>
+                <button class="control-btn" id="zoomIn">
+                    <i class="fas fa-search-plus"></i> Zoom In
+                </button>
+                <button class="control-btn" id="zoomOut">
+                    <i class="fas fa-search-minus"></i> Zoom Out
+                </button>
+            </div>
+            
+            <div class="github-info">
+                <p><strong>GitHub Upload Instructions:</strong></p>
+                <p>1. Click "Download Image" to save the adjusted photo</p>
+                <p>2. Upload to: <code>https://github.com/YOUR_USERNAME/YOUR_REPO/blob/main/profile-images/alber-profile.jpg</code></p>
+                <p>3. Make sure the filename is exactly: <code>alber-profile.jpg</code></p>
+            </div>
+            
+            <div class="modal-actions">
+                <button class="modal-btn cancel-btn" id="cancelEdit">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button class="modal-btn save-btn" id="downloadImage">
+                    <i class="fas fa-download"></i> Download Image
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
     <script>
-        // إضافة التاريخ العربي
-        const now = new Date();
-        const hijriMonths = ["محرم", "صفر", "ربيع الأول", "ربيع الثاني", "جمادى الأولى", "جمادى الآخرة", "رجب", "شعبان", "رمضان", "شوال", "ذو القعدة", "ذو الحجة"];
-        const day = now.getDate();
-        const month = hijriMonths[now.getMonth()];
-        const year = now.getFullYear();
-        const hijriYear = year - 622;
+        // عناصر DOM
+        const photoUpload = document.getElementById('photoUpload');
+        const cropperUpload = document.getElementById('cropperUpload');
+        const uploadTrigger = document.getElementById('uploadTrigger');
+        const profileImage = document.getElementById('profileImage');
+        const defaultAvatar = document.getElementById('defaultAvatar');
+        const imageEditorModal = document.getElementById('imageEditorModal');
+        const imagePreview = document.getElementById('imagePreview');
+        const cancelEditBtn = document.getElementById('cancelEdit');
+        const downloadImageBtn = document.getElementById('downloadImage');
         
-        document.getElementById('currentDate').textContent = `${day} ${month} ${hijriYear}هـ`;
+        // متغيرات Cropper
+        let cropper = null;
+        let currentImageSrc = '';
         
-        // عداد الزيارات
-        let visitCount = localStorage.getItem('visitCount') || 0;
-        visitCount = parseInt(visitCount) + 1;
-        localStorage.setItem('visitCount', visitCount);
-        document.getElementById('visitCount').textContent = visitCount;
+        // عند النقر على زر تحميل الصورة
+        uploadTrigger.addEventListener('click', () => {
+            cropperUpload.click();
+        });
         
-        // تأثيرات تفاعلية
-        document.querySelectorAll('.btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                if(href && href.startsWith('http')) {
-                    // تأكيد قبل فتح الرابط (يمكن إزالته)
-                    if(!confirm(`سيتم فتح الرابط:\n${href}\n\nهل تريد المتابعة؟`)) {
-                        e.preventDefault();
-                    }
+        // عند اختيار صورة للتحرير
+        cropperUpload.addEventListener('change', (event) => {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    currentImageSrc = e.target.result;
+                    openImageEditor(currentImageSrc);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // فتح محرر الصور
+        function openImageEditor(imageSrc) {
+            imagePreview.src = imageSrc;
+            imagePreview.style.display = 'block';
+            imageEditorModal.style.display = 'flex';
+            
+            // تهيئة Cropper بعد تحميل الصورة
+            imagePreview.onload = () => {
+                if (cropper) {
+                    cropper.destroy();
                 }
+                
+                cropper = new Cropper(imagePreview, {
+                    aspectRatio: 1, // نسبة مربعة للصور الشخصية
+                    viewMode: 1,
+                    autoCropArea: 0.8,
+                    responsive: true,
+                    restore: true,
+                    guides: true,
+                    center: true,
+                    highlight: false,
+                    cropBoxMovable: true,
+                    cropBoxResizable: true,
+                    toggleDragModeOnDblclick: false,
+                    background: false
+                });
+            };
+        }
+        
+        // إغلاق محرر الصور
+        cancelEditBtn.addEventListener('click', () => {
+            imageEditorModal.style.display = 'none';
+            if (cropper) {
+                cropper.destroy();
+                cropper = null;
+            }
+        });
+        
+        // أزرار التحكم
+        document.getElementById('rotateLeft').addEventListener('click', () => {
+            if (cropper) {
+                cropper.rotate(-45);
+            }
+        });
+        
+        document.getElementById('rotateRight').addEventListener('click', () => {
+            if (cropper) {
+                cropper.rotate(45);
+            }
+        });
+        
+        document.getElementById('resetCrop').addEventListener('click', () => {
+            if (cropper) {
+                cropper.reset();
+            }
+        });
+        
+        document.getElementById('zoomIn').addEventListener('click', () => {
+            if (cropper) {
+                cropper.zoom(0.1);
+            }
+        });
+        
+        document.getElementById('zoomOut').addEventListener('click', () => {
+            if (cropper) {
+                cropper.zoom(-0.1);
+            }
+        });
+        
+        // تحميل الصورة المعدلة
+        downloadImageBtn.addEventListener('click', () => {
+            if (cropper) {
+                const canvas = cropper.getCroppedCanvas({
+                    width: 400,
+                    height: 400,
+                    imageSmoothingEnabled: true,
+                    imageSmoothingQuality: 'high'
+                });
+                
+                if (canvas) {
+                    // تحويل Canvas إلى صورة JPG
+                    const imageData = canvas.toDataURL('image/jpeg', 0.9);
+                    
+                    // إنشاء رابط تحميل
+                    const downloadLink = document.createElement('a');
+                    downloadLink.href = imageData;
+                    downloadLink.download = 'alber-profile.jpg';
+                    downloadLink.click();
+                    
+                    // حفظ في localStorage كنسخة مؤقتة
+                    localStorage.setItem('alber_profile_image_temp', imageData);
+                    
+                    // عرض رسالة للمستخدم
+                    alert('✅ Image downloaded! Please upload it to GitHub in the "profile-images" folder with filename "alber-profile.jpg"');
+                    
+                    // إغلاق المحرر
+                    imageEditorModal.style.display = 'none';
+                    cropper.destroy();
+                    cropper = null;
+                }
+            }
+        });
+        
+        // تحميل الصورة من GitHub عند فتح الصفحة
+        window.addEventListener('load', () => {
+            // أولاً: تحقق من وجود صورة مؤقتة في localStorage
+            const tempImage = localStorage.getItem('alber_profile_image_temp');
+            if (tempImage) {
+                profileImage.src = tempImage;
+                profileImage.style.display = 'block';
+                defaultAvatar.style.display = 'none';
+            }
+            // إذا لم توجد صورة مؤقتة، حاول تحميلها من GitHub
+            else {
+                // رابط الصورة على GitHub - غير هذا الرابط بمعلوماتك
+                const githubImageUrl = 'https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/profile-images/alber-profile.jpg';
+                
+                // تحميل الصورة من GitHub مع التحقق من وجودها
+                fetch(githubImageUrl, { method: 'HEAD' })
+                    .then(response => {
+                        if (response.ok) {
+                            profileImage.src = githubImageUrl + '?t=' + new Date().getTime();
+                            profileImage.style.display = 'block';
+                            defaultAvatar.style.display = 'none';
+                        } else {
+                            throw new Error('Image not found on GitHub');
+                        }
+                    })
+                    .catch(error => {
+                        console.log('Using default avatar: ' + error.message);
+                        profileImage.style.display = 'none';
+                        defaultAvatar.style.display = 'block';
+                    });
+            }
+        });
+        
+        // تحسين تجربة إنستاباي
+        document.querySelectorAll('a[href*="instapay"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const instapayUrl = "instapay://send?username=elqiser2@instapay";
+                const webUrl = "https://instapay.com";
+                
+                window.location.href = instapayUrl;
+                
+                setTimeout(() => {
+                    if (document.hasFocus()) {
+                        window.open(webUrl, '_blank');
+                    }
+                }, 1000);
             });
         });
         
-        // تأثير اهتزاز بسيط عند التحميل
-        setTimeout(() => {
-            document.querySelector('.business-card').style.animation = 'none';
-            setTimeout(() => {
-                document.querySelector('.business-card').style.animation = 'fadeInUp 0.8s ease';
-            }, 10);
-        }, 100);
+        // تتبع الزيارات
+        let visits = localStorage.getItem('alber_visits') || 0;
+        visits = parseInt(visits) + 1;
+        localStorage.setItem('alber_visits', visits);
         
-        // إضافة انيميشن
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes fadeInUp {
-                from {
-                    opacity: 0;
-                    transform: translateY(30px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
-            .business-card {
-                animation: fadeInUp 0.8s ease;
-            }
+        // تأثيرات عند التحميل
+        setTimeout(() => {
+            document.querySelectorAll('.contact-item').forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    item.style.animation = 'fadeInUp 0.5s ease forwards';
+                    item.style.animationDelay = (index * 0.1) + 's';
+                }, 100);
+            });
             
-            @keyframes pulse {
-                0% { transform: scale(1); }
-                50% { transform: scale(1.02); }
-                100% { transform: scale(1); }
-            }
-            .profile-img {
-                animation: pulse 2s infinite;
-            }
-        `;
-        document.head.appendChild(style);
+            setTimeout(() => {
+                const instapayItem = document.querySelector('.instapay-item');
+                instapayItem.style.opacity = '0';
+                instapayItem.style.transform = 'translateY(20px)';
+                instapayItem.style.animation = 'fadeInUp 0.5s ease forwards';
+                instapayItem.style.animationDelay = '0.4s';
+            }, 100);
+        }, 500);
         
         // رسالة ترحيب في الكونسول
-        console.log('%c🚀 مرحبًا بك في بطاقتي الرقمية!', 'color: #2a5298; font-size: 16px; font-weight: bold;');
-        console.log('%c📧 للتواصل: ahmed.mohamed@example.com', 'color: #25d366;');
+        console.log('%c🌟 Alber Samir Digital Card', 'color: #0d47a1; font-size: 18px; font-weight: bold;');
+        console.log('%c💼 Profession: IT | Data Entry | Software Technician', 'color: #2196f3;');
+        console.log('%c📞 Primary: +20 127 627 2065', 'color: #25d366;');
+        console.log('%c💳 Instapay: elqiser2@instapay', 'color: #ff9800;');
+        console.log('%c📘 Facebook: https://www.facebook.com/ellqiser', 'color: #1877f2;');
         
-        // حفظ البيانات في localStorage
-        const cardData = {
+        // حفظ بيانات الزيارة
+        const visitData = {
             lastVisit: new Date().toISOString(),
-            visitorIP: 'local'
+            visitCount: visits,
+            userAgent: navigator.userAgent
         };
-        localStorage.setItem('cardData', JSON.stringify(cardData));
+        localStorage.setItem('alber_visit_data', JSON.stringify(visitData));
     </script>
 </body>
 </html>
