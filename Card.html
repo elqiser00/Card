@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بطاقتي الرقمية</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .business-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 25px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .business-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 35px 90px rgba(0, 0, 0, 0.4);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 45px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.2;
+        }
+        
+        .profile-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 6px solid rgba(255, 255, 255, 0.4);
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: white;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-img:hover {
+            transform: scale(1.05);
+        }
+        
+        .name {
+            font-size: 34px;
+            font-weight: 900;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .title {
+            font-size: 20px;
+            opacity: 0.95;
+            font-weight: 400;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .card-body {
+            padding: 40px 35px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 28px;
+            padding: 18px 20px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border-radius: 18px;
+            transition: all 0.3s ease;
+            border-left: 6px solid #2a5298;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #2a5298, #1e3c72);
+            opacity: 0.7;
+        }
+        
+        .contact-item:hover {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            transform: translateX(8px) translateY(-3px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #2a5298, #1e3c72);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 18px;
+            color: white;
+            font-size: 28px;
+            box-shadow: 0 6px 15px rgba(42, 82, 152, 0.3);
+            flex-shrink: 0;
+        }
+        
+        .contact-info h3 {
+            color: #1e3c72;
+            font-size: 16px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .contact-info p {
+            color: #2c3e50;
+            font-size: 20px;
+            font-weight: 800;
+            direction: ltr;
+            text-align: right;
+        }
+        
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-top: 35px;
+        }
+        
+        .btn {
+            padding: 18px;
+            border-radius: 15px;
+            border: none;
+            font-weight: 800;
+            font-size: 17px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn-call {
+            background: linear-gradient(135deg, #00b09b, #96c93d);
+        }
+        
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25d366, #128c7e);
+        }
+        
+        .btn-email {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+        }
+        
+        .btn-social {
+            background: linear-gradient(135deg, #8a2387, #f27121);
+        }
+        
+        .btn:hover {
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(-2px) scale(1.01);
+        }
+        
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 2px solid rgba(42, 82, 152, 0.1);
+        }
+        
+        .social-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f1f3f5, #e9ecef);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #2a5298;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .social-icon::after {
+            content: attr(title);
+            position: absolute;
+            bottom: -40px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            white-space: nowrap;
+        }
+        
+        .social-icon:hover::after {
+            opacity: 1;
+        }
+        
+        .social-icon:hover {
+            background: linear-gradient(135deg, #2a5298, #1e3c72);
+            color: white;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(42, 82, 152, 0.3);
+        }
+        
+        .card-footer {
+            text-align: center;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            color: #4a5568;
+            font-size: 15px;
+            border-top: 2px solid rgba(42, 82, 152, 0.1);
+        }
+        
+        .card-footer p {
+            margin: 5px 0;
+        }
+        
+        @media (max-width: 480px) {
+            .action-buttons {
+                grid-template-columns: 1fr;
+            }
+            
+            .card-header {
+                padding: 35px 25px;
+            }
+            
+            .name {
+                font-size: 30px;
+            }
+            
+            .contact-item {
+                padding: 15px;
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .contact-icon {
+                margin-left: 0;
+                margin-bottom: 15px;
+            }
+        }
+        
+        /* أيقونات بدون Font Awesome */
+        .icon-phone::before { content: "📞"; }
+        .icon-email::before { content: "✉️"; }
+        .icon-briefcase::before { content: "💼"; }
+        .icon-user::before { content: "👤"; }
+        .icon-whatsapp::before { content: "💬"; }
+        .icon-share::before { content: "🌐"; }
+        .icon-facebook::before { content: "📘"; }
+        .icon-twitter::before { content: "🐦"; }
+        .icon-linkedin::before { content: "💼"; }
+        .icon-instagram::before { content: "📷"; }
+    </style>
+</head>
+<body>
+    <div class="business-card">
+        <div class="card-header">
+            <div class="profile-img">
+                <span class="icon-user"></span>
+            </div>
+            <h1 class="name">أحمد محمد</h1>
+            <p class="title">مطور ويب | مصمم UI/UX</p>
+        </div>
+        
+        <div class="card-body">
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <span class="icon-phone"></span>
+                </div>
+                <div class="contact-info">
+                    <h3>رقم الهاتف</h3>
+                    <p>+20 101 234 5678</p>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <span class="icon-email"></span>
+                </div>
+                <div class="contact-info">
+                    <h3>البريد الإلكتروني</h3>
+                    <p>ahmed.mohamed@example.com</p>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <span class="icon-briefcase"></span>
+                </div>
+                <div class="contact-info">
+                    <h3>التخصص والخدمات</h3>
+                    <p>تطوير مواقع وتطبيقات ويب متكاملة</p>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="tel:+201012345678" class="btn btn-call">
+                    <span class="icon-phone"></span>
+                    <span>اتصل بي</span>
+                </a>
+                
+                <a href="https://wa.me/201012345678" class="btn btn-whatsapp">
+                    <span class="icon-whatsapp"></span>
+                    <span>واتساب</span>
+                </a>
+                
+                <a href="mailto:ahmed.mohamed@example.com" class="btn btn-email">
+                    <span class="icon-email"></span>
+                    <span>إرسال إيميل</span>
+                </a>
+                
+                <a href="https://linktr.ee/ahmed" class="btn btn-social">
+                    <span class="icon-share"></span>
+                    <span>جميع الروابط</span>
+                </a>
+            </div>
+            
+            <div class="social-media">
+                <a href="https://facebook.com/yourprofile" class="social-icon" title="Facebook">
+                    <span class="icon-facebook"></span>
+                </a>
+                <a href="https://twitter.com/yourprofile" class="social-icon" title="Twitter">
+                    <span class="icon-twitter"></span>
+                </a>
+                <a href="https://linkedin.com/in/yourprofile" class="social-icon" title="LinkedIn">
+                    <span class="icon-linkedin"></span>
+                </a>
+                <a href="https://instagram.com/yourprofile" class="social-icon" title="Instagram">
+                    <span class="icon-instagram"></span>
+                </a>
+            </div>
+        </div>
+        
+        <div class="card-footer">
+            <p>© 2024 - البطاقة الرقمية الشخصية</p>
+            <p>تاريخ الإنشاء: <span id="currentDate"></span></p>
+            <p>تمت الزيارة <span id="visitCount">0</span> مرة</p>
+        </div>
+    </div>
+    
+    <script>
+        // إضافة التاريخ العربي
+        const now = new Date();
+        const hijriMonths = ["محرم", "صفر", "ربيع الأول", "ربيع الثاني", "جمادى الأولى", "جمادى الآخرة", "رجب", "شعبان", "رمضان", "شوال", "ذو القعدة", "ذو الحجة"];
+        const day = now.getDate();
+        const month = hijriMonths[now.getMonth()];
+        const year = now.getFullYear();
+        const hijriYear = year - 622;
+        
+        document.getElementById('currentDate').textContent = `${day} ${month} ${hijriYear}هـ`;
+        
+        // عداد الزيارات
+        let visitCount = localStorage.getItem('visitCount') || 0;
+        visitCount = parseInt(visitCount) + 1;
+        localStorage.setItem('visitCount', visitCount);
+        document.getElementById('visitCount').textContent = visitCount;
+        
+        // تأثيرات تفاعلية
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if(href && href.startsWith('http')) {
+                    // تأكيد قبل فتح الرابط (يمكن إزالته)
+                    if(!confirm(`سيتم فتح الرابط:\n${href}\n\nهل تريد المتابعة؟`)) {
+                        e.preventDefault();
+                    }
+                }
+            });
+        });
+        
+        // تأثير اهتزاز بسيط عند التحميل
+        setTimeout(() => {
+            document.querySelector('.business-card').style.animation = 'none';
+            setTimeout(() => {
+                document.querySelector('.business-card').style.animation = 'fadeInUp 0.8s ease';
+            }, 10);
+        }, 100);
+        
+        // إضافة انيميشن
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .business-card {
+                animation: fadeInUp 0.8s ease;
+            }
+            
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.02); }
+                100% { transform: scale(1); }
+            }
+            .profile-img {
+                animation: pulse 2s infinite;
+            }
+        `;
+        document.head.appendChild(style);
+        
+        // رسالة ترحيب في الكونسول
+        console.log('%c🚀 مرحبًا بك في بطاقتي الرقمية!', 'color: #2a5298; font-size: 16px; font-weight: bold;');
+        console.log('%c📧 للتواصل: ahmed.mohamed@example.com', 'color: #25d366;');
+        
+        // حفظ البيانات في localStorage
+        const cardData = {
+            lastVisit: new Date().toISOString(),
+            visitorIP: 'local'
+        };
+        localStorage.setItem('cardData', JSON.stringify(cardData));
+    </script>
+</body>
+</html>
