@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Digital Card - Alber Samir</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
     <style>
         * {
             margin: 0;
@@ -87,166 +86,6 @@
         .default-avatar {
             font-size: 70px;
             color: white;
-        }
-        
-        .upload-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 10px;
-            font-size: 12px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 3;
-            border-radius: 0 0 80px 80px;
-        }
-        
-        .upload-overlay:hover {
-            background: rgba(0, 0, 0, 0.9);
-        }
-        
-        /* نافذة ضبط الصورة */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .modal-content {
-            background: white;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 500px;
-            max-height: 90vh;
-            overflow: auto;
-            padding: 30px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-        }
-        
-        .modal-header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        
-        .modal-header h3 {
-            color: #0d47a1;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        
-        .modal-header p {
-            color: #666;
-            font-size: 14px;
-        }
-        
-        .image-preview-container {
-            width: 100%;
-            height: 300px;
-            margin: 20px 0;
-            border: 2px dashed #ddd;
-            border-radius: 15px;
-            overflow: hidden;
-            background: #f8fbff;
-        }
-        
-        #imagePreview {
-            width: 100%;
-            height: 100%;
-            display: none;
-        }
-        
-        .crop-instructions {
-            background: #e3f2fd;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
-            font-size: 14px;
-            color: #0d47a1;
-            text-align: center;
-        }
-        
-        .controls {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin: 20px 0;
-            justify-content: center;
-        }
-        
-        .control-btn {
-            padding: 12px 20px;
-            border: none;
-            border-radius: 10px;
-            background: #0d47a1;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .control-btn:hover {
-            background: #1565c0;
-            transform: translateY(-3px);
-        }
-        
-        .control-btn.rotate-btn {
-            background: #ff9800;
-        }
-        
-        .control-btn.rotate-btn:hover {
-            background: #e65100;
-        }
-        
-        .modal-actions {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-            justify-content: center;
-        }
-        
-        .modal-btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            flex: 1;
-            max-width: 200px;
-        }
-        
-        .save-btn {
-            background: linear-gradient(135deg, #4caf50, #2e7d32);
-            color: white;
-        }
-        
-        .save-btn:hover {
-            background: linear-gradient(135deg, #2e7d32, #4caf50);
-            transform: translateY(-3px);
-        }
-        
-        .cancel-btn {
-            background: #f5f5f5;
-            color: #666;
-        }
-        
-        .cancel-btn:hover {
-            background: #e0e0e0;
         }
         
         .name {
@@ -612,26 +451,6 @@
             .instapay-icon {
                 background-size: 60% !important;
             }
-            
-            .modal-content {
-                padding: 20px;
-            }
-            
-            .image-preview-container {
-                height: 250px;
-            }
-            
-            .controls {
-                flex-direction: column;
-            }
-            
-            .modal-actions {
-                flex-direction: column;
-            }
-            
-            .modal-btn {
-                max-width: 100%;
-            }
         }
         
         /* تأثيرات */
@@ -679,11 +498,6 @@
         .facebook-btn {
             animation: facebookGlow 3s infinite;
         }
-        
-        /* إخفاء حقل رفع الصورة */
-        #photoUpload, #cropperUpload {
-            display: none;
-        }
     </style>
 </head>
 <body>
@@ -696,9 +510,6 @@
                          alt="Alber Samir">
                     <div id="defaultAvatar" class="default-avatar">👤</div>
                 </div>
-                <div class="upload-overlay" id="uploadTrigger">
-                    <span>📷</span> Edit Photo
-                </div>
             </div>
             
             <h1 class="name">Alber Samir</h1>
@@ -709,9 +520,6 @@
                 <div class="badge">Data Entry</div>
                 <div class="badge">Software Technician</div>
             </div>
-            
-            <input type="file" id="photoUpload" accept="image/*">
-            <input type="file" id="cropperUpload" accept="image/*">
         </div>
         
         <div class="card-body">
@@ -860,216 +668,29 @@
         </div>
     </div>
     
-    <!-- نافذة ضبط الصورة -->
-    <div class="modal-overlay" id="imageEditorModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3>📷 Adjust Your Photo</h3>
-                <p>Drag to crop, rotate, and adjust your profile photo</p>
-            </div>
-            
-            <div class="crop-instructions">
-                <p>💡 <strong>Instructions:</strong> Drag the corners to crop. Use buttons to rotate. When done, click Download Image.</p>
-            </div>
-            
-            <div class="image-preview-container">
-                <img id="imagePreview" alt="Image Preview">
-            </div>
-            
-            <div class="controls">
-                <button class="control-btn" id="rotateLeft">
-                    <i class="fas fa-undo"></i> Rotate Left
-                </button>
-                <button class="control-btn" id="rotateRight">
-                    <i class="fas fa-redo"></i> Rotate Right
-                </button>
-                <button class="control-btn rotate-btn" id="resetCrop">
-                    <i class="fas fa-sync-alt"></i> Reset
-                </button>
-                <button class="control-btn" id="zoomIn">
-                    <i class="fas fa-search-plus"></i> Zoom In
-                </button>
-                <button class="control-btn" id="zoomOut">
-                    <i class="fas fa-search-minus"></i> Zoom Out
-                </button>
-            </div>
-            
-            <div class="modal-actions">
-                <button class="modal-btn cancel-btn" id="cancelEdit">
-                    <i class="fas fa-times"></i> Cancel
-                </button>
-                <button class="modal-btn save-btn" id="downloadImage">
-                    <i class="fas fa-download"></i> Download Image
-                </button>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
     <script>
-        // عناصر DOM
-        const photoUpload = document.getElementById('photoUpload');
-        const cropperUpload = document.getElementById('cropperUpload');
-        const uploadTrigger = document.getElementById('uploadTrigger');
-        const profileImage = document.getElementById('profileImage');
-        const defaultAvatar = document.getElementById('defaultAvatar');
-        const imageEditorModal = document.getElementById('imageEditorModal');
-        const imagePreview = document.getElementById('imagePreview');
-        const cancelEditBtn = document.getElementById('cancelEdit');
-        const downloadImageBtn = document.getElementById('downloadImage');
-        
         // رابط صورتك على GitHub
         const githubImageUrl = 'https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg';
         
-        // متغيرات Cropper
-        let cropper = null;
-        let currentImageSrc = '';
-        
-        // عند النقر على زر تحميل الصورة
-        uploadTrigger.addEventListener('click', () => {
-            cropperUpload.click();
-        });
-        
-        // عند اختيار صورة للتحرير
-        cropperUpload.addEventListener('change', (event) => {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    currentImageSrc = e.target.result;
-                    openImageEditor(currentImageSrc);
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-        
-        // فتح محرر الصور
-        function openImageEditor(imageSrc) {
-            imagePreview.src = imageSrc;
-            imagePreview.style.display = 'block';
-            imageEditorModal.style.display = 'flex';
-            
-            // تهيئة Cropper بعد تحميل الصورة
-            imagePreview.onload = () => {
-                if (cropper) {
-                    cropper.destroy();
-                }
-                
-                cropper = new Cropper(imagePreview, {
-                    aspectRatio: 1,
-                    viewMode: 1,
-                    autoCropArea: 0.8,
-                    responsive: true,
-                    restore: true
-                });
-            };
-        }
-        
-        // إغلاق محرر الصور
-        cancelEditBtn.addEventListener('click', () => {
-            imageEditorModal.style.display = 'none';
-            if (cropper) {
-                cropper.destroy();
-                cropper = null;
-            }
-        });
-        
-        // أزرار التحكم
-        document.getElementById('rotateLeft').addEventListener('click', () => {
-            if (cropper) {
-                cropper.rotate(-45);
-            }
-        });
-        
-        document.getElementById('rotateRight').addEventListener('click', () => {
-            if (cropper) {
-                cropper.rotate(45);
-            }
-        });
-        
-        document.getElementById('resetCrop').addEventListener('click', () => {
-            if (cropper) {
-                cropper.reset();
-            }
-        });
-        
-        document.getElementById('zoomIn').addEventListener('click', () => {
-            if (cropper) {
-                cropper.zoom(0.1);
-            }
-        });
-        
-        document.getElementById('zoomOut').addEventListener('click', () => {
-            if (cropper) {
-                cropper.zoom(-0.1);
-            }
-        });
-        
-        // تحميل الصورة المعدلة
-        downloadImageBtn.addEventListener('click', () => {
-            if (cropper) {
-                const canvas = cropper.getCroppedCanvas({
-                    width: 400,
-                    height: 400,
-                    imageSmoothingEnabled: true,
-                    imageSmoothingQuality: 'high'
-                });
-                
-                if (canvas) {
-                    // تحويل Canvas إلى صورة JPG
-                    const imageData = canvas.toDataURL('image/jpeg', 0.9);
-                    
-                    // إنشاء رابط تحميل
-                    const downloadLink = document.createElement('a');
-                    downloadLink.href = imageData;
-                    downloadLink.download = 'alber-profile.jpg';
-                    downloadLink.click();
-                    
-                    // حفظ في localStorage كنسخة مؤقتة
-                    localStorage.setItem('alber_profile_image_temp', imageData);
-                    
-                    // تحديث الصورة مباشرة
-                    profileImage.src = imageData;
-                    
-                    // عرض رسالة للمستخدم
-                    alert('✅ Image downloaded successfully!');
-                    
-                    // إغلاق المحرر
-                    imageEditorModal.style.display = 'none';
-                    if (cropper) {
-                        cropper.destroy();
-                        cropper = null;
-                    }
-                }
-            }
-        });
+        // عناصر DOM
+        const profileImage = document.getElementById('profileImage');
+        const defaultAvatar = document.getElementById('defaultAvatar');
         
         // تحميل الصورة عند فتح الصفحة
         window.addEventListener('load', () => {
-            // أولاً: تحقق من وجود صورة مؤقتة في localStorage
-            const tempImage = localStorage.getItem('alber_profile_image_temp');
+            // استخدام الصورة من GitHub مع timestamp لمنع التخزين المؤقت
+            profileImage.src = githubImageUrl + '?t=' + new Date().getTime();
             
-            if (tempImage) {
-                // استخدام الصورة المؤقتة
-                profileImage.src = tempImage;
+            // التحقق من نجاح تحميل الصورة
+            profileImage.onload = function() {
                 profileImage.style.display = 'block';
                 defaultAvatar.style.display = 'none';
-            } else {
-                // استخدام الصورة من GitHub مع timestamp لمنع التخزين المؤقت
-                profileImage.src = githubImageUrl + '?t=' + new Date().getTime();
-                
-                // التحقق من نجاح تحميل الصورة
-                profileImage.onload = function() {
-                    profileImage.style.display = 'block';
-                    defaultAvatar.style.display = 'none';
-                };
-                
-                profileImage.onerror = function() {
-                    profileImage.style.display = 'none';
-                    defaultAvatar.style.display = 'block';
-                };
-            }
+            };
+            
+            profileImage.onerror = function() {
+                profileImage.style.display = 'none';
+                defaultAvatar.style.display = 'block';
+            };
         });
         
         // تحسين تجربة إنستاباي
