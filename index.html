@@ -222,6 +222,8 @@
         
         .contact-details {
             flex: 1;
+            width: 100%;
+            overflow: hidden;
         }
         
         .contact-type {
@@ -240,6 +242,9 @@
             margin-bottom: 8px;
             letter-spacing: 0.5px;
             font-family: 'Courier New', monospace;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            width: 100%;
         }
         
         .country-flag {
@@ -253,6 +258,7 @@
             display: flex;
             gap: 12px;
             margin-top: 12px;
+            width: 100%;
         }
         
         .contact-btn {
@@ -268,6 +274,8 @@
             flex: 1;
             justify-content: center;
             min-width: 0;
+            text-align: center;
+            white-space: nowrap;
         }
         
         .whatsapp-btn {
@@ -280,9 +288,76 @@
             color: white;
         }
         
+        /* تصميم Email محسّن للهواتف */
         .email-item {
             background: #fff8e1;
             border-color: #ffb74d;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            padding: 20px;
+        }
+        
+        .email-content {
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            width: 100%;
+            margin-bottom: 15px;
+        }
+        
+        .email-icon-wrapper {
+            flex-shrink: 0;
+        }
+        
+        .email-details {
+            flex: 1;
+            min-width: 0;
+            overflow: hidden;
+        }
+        
+        .email-address {
+            font-size: 16px;
+            font-weight: 700;
+            color: #0d47a1;
+            direction: ltr;
+            text-align: right;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            display: block;
+            width: 100%;
+            padding: 2px 0;
+        }
+        
+        .email-btn-container {
+            width: 100%;
+            margin-top: 10px;
+        }
+        
+        .email-btn {
+            background: linear-gradient(135deg, #ff9800, #e65100);
+            color: white;
+            width: 100%;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .email-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 152, 0, 0.4);
+            background: linear-gradient(135deg, #e65100, #ff9800);
         }
         
         /* تصميم إنستاباي */
@@ -407,36 +482,102 @@
             border-top: 3px solid #e3f2fd;
         }
         
+        /* تصميم للهواتف */
         @media (max-width: 480px) {
             .card-header {
-                padding: 35px 25px;
+                padding: 30px 20px;
             }
             
             .profile-container {
-                width: 140px;
-                height: 140px;
+                width: 130px;
+                height: 130px;
             }
             
             .profile-frame {
-                width: 140px;
-                height: 140px;
+                width: 130px;
+                height: 130px;
+                border-width: 5px;
             }
             
             .name {
-                font-size: 28px;
+                font-size: 26px;
+            }
+            
+            .title {
+                font-size: 15px;
             }
             
             .card-body {
                 padding: 25px 20px;
             }
             
-            .contact-buttons {
-                flex-direction: column;
+            .contact-item {
+                padding: 16px;
+                gap: 15px;
             }
             
-            .facebook-btn {
-                padding: 16px 25px;
+            .contact-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
+            }
+            
+            .phone-number {
                 font-size: 16px;
+                letter-spacing: 0.3px;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .contact-btn {
+                padding: 12px;
+                font-size: 15px;
+                width: 100%;
+            }
+            
+            /* تصميم Email للهواتف */
+            .email-item {
+                padding: 16px;
+            }
+            
+            .email-content {
+                flex-direction: column;
+                gap: 12px;
+                align-items: center;
+            }
+            
+            .email-icon-wrapper {
+                margin-bottom: 5px;
+            }
+            
+            .email-details {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .email-address {
+                font-size: 15px;
+                text-align: center;
+                padding: 8px;
+                background: rgba(255, 255, 255, 0.7);
+                border-radius: 8px;
+                margin-bottom: 12px;
+            }
+            
+            .email-btn {
+                padding: 14px;
+                font-size: 16px;
+            }
+            
+            /* إنستاباي للهواتف */
+            .instapay-item {
+                padding: 16px;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
             }
             
             .instapay-username {
@@ -444,12 +585,59 @@
             }
             
             .instapay-btn {
-                padding: 12px;
+                padding: 14px;
                 font-size: 15px;
+            }
+            
+            /* Facebook للهواتف */
+            .facebook-btn {
+                padding: 16px 25px;
+                font-size: 16px;
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+            }
+            
+            .facebook-btn i {
+                font-size: 24px;
             }
             
             .instapay-icon {
                 background-size: 60% !important;
+            }
+            
+            .section-title {
+                font-size: 17px;
+                margin: 20px 0 15px;
+            }
+        }
+        
+        /* تصميم للشاشات الصغيرة جداً */
+        @media (max-width: 360px) {
+            .card-body {
+                padding: 20px 15px;
+            }
+            
+            .phone-number {
+                font-size: 15px;
+            }
+            
+            .email-address {
+                font-size: 14px;
+            }
+            
+            .instapay-username {
+                font-size: 16px;
+            }
+            
+            .contact-btn {
+                font-size: 14px;
+                padding: 10px;
+            }
+            
+            .email-btn {
+                font-size: 15px;
+                padding: 12px;
             }
         }
         
@@ -610,18 +798,22 @@
             </div>
             
             <div class="contact-item email-item">
-                <div class="contact-icon icon-email">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                <div class="contact-details">
-                    <div class="contact-type">Official Email</div>
-                    <div class="phone-number">albersamir2@gmail.com</div>
-                    <div class="contact-buttons">
-                        <a href="mailto:albersamir2@gmail.com" class="contact-btn" style="background:linear-gradient(135deg,#ff9800,#e65100);color:white;width:100%">
+                <div class="email-content">
+                    <div class="email-icon-wrapper">
+                        <div class="contact-icon icon-email">
                             <i class="fas fa-envelope"></i>
-                            Send Email
-                        </a>
+                        </div>
                     </div>
+                    <div class="email-details">
+                        <div class="contact-type">Official Email</div>
+                        <div class="email-address">albersamir2@gmail.com</div>
+                    </div>
+                </div>
+                <div class="email-btn-container">
+                    <a href="mailto:albersamir2@gmail.com" class="email-btn">
+                        <i class="fas fa-envelope"></i>
+                        Send Email
+                    </a>
                 </div>
             </div>
             
