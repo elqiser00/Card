@@ -1032,7 +1032,7 @@
                     </div>
                     
                     <!-- Orange Cash App Link -->
-                    <a href="tel:*9*1*1276272065*AMOUNT#" class="mobile-money-btn" onclick="return prepareOrangePayment()">
+                    <a href="tel:#7115#*1*1*1*01276272065#" class="mobile-money-btn">
                         <i class="fas fa-money-bill-wave"></i>
                         Send via Orange Cash
                     </a>
@@ -1134,20 +1134,6 @@
                 defaultAvatar.style.display = 'block';
             };
         });
-        
-        // Function to prepare Orange Cash payment
-        function prepareOrangePayment() {
-            const amount = prompt("Enter the amount to send via Orange Cash:", "0");
-            if (amount && !isNaN(amount) && parseFloat(amount) > 0) {
-                const encodedAmount = encodeURIComponent(amount);
-                const orangeCashLink = `tel:*9*1*1276272065*${encodedAmount}#`;
-                window.location.href = orangeCashLink;
-                return false;
-            } else if (amount !== null) {
-                alert("Please enter a valid amount");
-            }
-            return false;
-        }
         
         // Function to prepare Vodafone Cash payment
         function prepareVodafonePayment() {
