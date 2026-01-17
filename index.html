@@ -1077,16 +1077,10 @@
                         <div class="mobile-number vodafone-number">+20 106 078 2884</div>
                     </div>
                     
-                    <!-- رابط Vodafone Cash الجديد - سيفتح لوحة المفاتيح مباشرةً -->
-                    <a href="tel:*9*7*01060782884#" class="mobile-money-btn vodafone-money-btn">
+                    <!-- رابط Vodafone Cash المشفر -->
+                    <a href="tel:*%239*7*01060782884%23" class="mobile-money-btn vodafone-money-btn">
                         <i class="fas fa-money-bill-wave"></i>
                         Send via Vodafone Cash
-                    </a>
-                    
-                    <!-- رابط بديل لطلب المبلغ أولاً (احتياطي) -->
-                    <a href="#" class="orange-action-btn" style="margin-top: 10px; background: linear-gradient(135deg, #cc0000, #990000);" onclick="return prepareVodafonePayment()">
-                        <i class="fas fa-edit"></i>
-                        Send with Amount
                     </a>
                 </div>
             </div>
@@ -1165,20 +1159,6 @@
                 defaultAvatar.style.display = 'block';
             };
         });
-        
-        // Function to prepare Vodafone Cash payment with amount
-        function prepareVodafonePayment() {
-            const amount = prompt("Enter the amount to send via Vodafone Cash:", "0");
-            if (amount && !isNaN(amount) && parseFloat(amount) > 0) {
-                const encodedAmount = encodeURIComponent(amount);
-                const vodafoneCashLink = `tel:*9*1*1060782884*${encodedAmount}#`;
-                window.location.href = vodafoneCashLink;
-                return false;
-            } else if (amount !== null) {
-                alert("Please enter a valid amount");
-            }
-            return false;
-        }
         
         // Track visits
         let visits = localStorage.getItem('alber_visits') || 0;
