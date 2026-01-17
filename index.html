@@ -605,6 +605,57 @@
             background: linear-gradient(135deg, #cc6600, #ff9933);
         }
         
+        /* Alternative Orange Cash buttons */
+        .orange-alternative-btn {
+            background: linear-gradient(135deg, #ffcc66, #ff9900);
+            color: white;
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            text-align: center;
+            margin-top: 8px;
+        }
+        
+        .orange-alternative-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 204, 102, 0.4);
+            background: linear-gradient(135deg, #ff9900, #ffcc66);
+        }
+        
+        /* Copy instruction */
+        .copy-instruction {
+            background: #fff3e0;
+            border: 1px dashed #ff9900;
+            border-radius: 8px;
+            padding: 10px 15px;
+            margin-top: 10px;
+            text-align: center;
+            font-size: 13px;
+            color: #cc6600;
+        }
+        
+        .copy-code {
+            background: white;
+            border: 1px solid #ff9900;
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin-top: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            font-weight: bold;
+            color: #cc5200;
+            cursor: pointer;
+            user-select: all;
+        }
+        
         /* Facebook and Telegram Buttons */
         .social-section {
             margin-top: 30px;
@@ -778,7 +829,7 @@
                 font-size: 18px;
             }
             
-            .instapay-btn, .mobile-money-btn, .secondary-orange-btn {
+            .instapay-btn, .mobile-money-btn, .secondary-orange-btn, .orange-alternative-btn {
                 padding: 14px;
                 font-size: 15px;
             }
@@ -813,6 +864,16 @@
                 font-size: 17px;
                 margin: 20px 0 15px;
             }
+            
+            .copy-instruction {
+                font-size: 12px;
+                padding: 8px 12px;
+            }
+            
+            .copy-code {
+                font-size: 13px;
+                padding: 6px 10px;
+            }
         }
         
         /* Extra small screens */
@@ -843,7 +904,7 @@
                 padding: 12px;
             }
             
-            .instapay-btn, .mobile-money-btn, .secondary-orange-btn {
+            .instapay-btn, .mobile-money-btn, .secondary-orange-btn, .orange-alternative-btn {
                 font-size: 14px;
                 padding: 12px;
             }
@@ -1068,16 +1129,34 @@
                         <div class="mobile-number">+20 127 627 2065</div>
                     </div>
                     
-                    <!-- حل المشكلة: كود USSD مبسط -->
+                    <!-- حل المشكلة: 3 خيارات مختلفة -->
                     <div class="orange-actions">
-                        <a href="tel:#7115*1*1*1*01276272065#" class="mobile-money-btn">
-                            <i class="fas fa-money-bill-wave"></i>
-                            Quick Transfer via Orange Cash
+                        <!-- الخيار 1: باستخدام JavaScript -->
+                        <a href="#" class="mobile-money-btn" onclick="openOrangeCashUSSD()">
+                            <i class="fas fa-bolt"></i>
+                            Quick Transfer (Auto Dial)
                         </a>
-                        <a href="tel:#7115#" class="secondary-orange-btn">
+                        
+                        <!-- الخيار 2: USSD مبسط -->
+                        <a href="tel:%237115%2A1%2A1%2A1%2A01276272065%23" class="secondary-orange-btn">
                             <i class="fas fa-mobile-alt"></i>
+                            USSD Transfer (Encoded)
+                        </a>
+                        
+                        <!-- الخيار 3: فتح قائمة Orange Cash -->
+                        <a href="tel:#7115#" class="orange-alternative-btn">
+                            <i class="fas fa-list"></i>
                             Open Orange Cash Menu
                         </a>
+                    </div>
+                    
+                    <!-- خيار النسخ اليدوي -->
+                    <div class="copy-instruction">
+                        <div>Or copy this code and paste in dialer:</div>
+                        <div class="copy-code" onclick="copyOrangeCode()">
+                            #7115*1*1*1*01276272065#
+                        </div>
+                        <small>Click to copy, then paste in phone dialer</small>
                     </div>
                 </div>
             </div>
@@ -1177,6 +1256,65 @@
                 defaultAvatar.style.display = 'block';
             };
         });
+        
+        // Function to open Orange Cash USSD properly
+        function openOrangeCashUSSD() {
+            // Try different formats to see which works
+            const ussdCodes = [
+                '#7115*1*1*1*01276272065#',
+                '*7115*1*1*1*01276272065#',
+                '#7115#*1*1*1*01276272065#'
+            ];
+            
+            // Try first format
+            const ussdCode = ussdCodes[0];
+            
+            // Create a temporary input to copy to clipboard
+            const tempInput = document.createElement('input');
+            tempInput.value = ussdCode;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            
+            // Try to open dialer with the code
+            try {
+                // Method 1: Direct tel link with encoded characters
+                const encodedUSSD = encodeURIComponent(ussdCode).replace(/#/g, '%23').replace(/\*/g, '%2A');
+                window.location.href = 'tel:' + encodedUSSD;
+                
+                // If that doesn't work, show instruction
+                setTimeout(() => {
+                    alert('Code copied to clipboard! Please paste in your phone dialer:\n\n' + ussdCode + 
+                          '\n\n1. Open Phone Dialer\n2. Paste the code\n3. Press Call');
+                }, 500);
+            } catch (e) {
+                // Fallback: just copy to clipboard
+                alert('Code copied to clipboard! Please paste in your phone dialer:\n\n' + ussdCode + 
+                      '\n\n1. Open Phone Dialer\n2. Paste the code\n3. Press Call');
+            }
+            
+            return false;
+        }
+        
+        // Function to copy Orange Cash code
+        function copyOrangeCode() {
+            const code = '#7115*1*1*1*01276272065#';
+            navigator.clipboard.writeText(code).then(() => {
+                alert('Code copied to clipboard!\n\n' + code + 
+                      '\n\nOpen your phone dialer and paste the code.');
+            }).catch(() => {
+                // Fallback for older browsers
+                const tempInput = document.createElement('input');
+                tempInput.value = code;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                alert('Code copied to clipboard!\n\n' + code + 
+                      '\n\nOpen your phone dialer and paste the code.');
+            });
+        }
         
         // Function to prepare Vodafone Cash payment
         function prepareVodafonePayment() {
