@@ -244,7 +244,7 @@
             border: 2px solid #ff6600;
         }
         
-        /* Vodafone Cash icon - UPDATED */
+        /* Vodafone Cash icon */
         .vodafone-cash-icon {
             background-image: url('https://i.suar.me/Eprql/l') !important;
             background-color: white !important;
@@ -1077,10 +1077,16 @@
                         <div class="mobile-number vodafone-number">+20 106 078 2884</div>
                     </div>
                     
-                    <!-- Vodafone Cash App Link -->
-                    <a href="tel:*9*1*1060782884*AMOUNT#" class="mobile-money-btn vodafone-money-btn" onclick="return prepareVodafonePayment()">
+                    <!-- رابط Vodafone Cash الجديد - سيفتح لوحة المفاتيح مباشرةً -->
+                    <a href="tel:*9*7*01060782884#" class="mobile-money-btn vodafone-money-btn">
                         <i class="fas fa-money-bill-wave"></i>
                         Send via Vodafone Cash
+                    </a>
+                    
+                    <!-- رابط بديل لطلب المبلغ أولاً (احتياطي) -->
+                    <a href="#" class="orange-action-btn" style="margin-top: 10px; background: linear-gradient(135deg, #cc0000, #990000);" onclick="return prepareVodafonePayment()">
+                        <i class="fas fa-edit"></i>
+                        Send with Amount
                     </a>
                 </div>
             </div>
@@ -1160,7 +1166,7 @@
             };
         });
         
-        // Function to prepare Vodafone Cash payment
+        // Function to prepare Vodafone Cash payment with amount
         function prepareVodafonePayment() {
             const amount = prompt("Enter the amount to send via Vodafone Cash:", "0");
             if (amount && !isNaN(amount) && parseFloat(amount) > 0) {
