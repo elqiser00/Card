@@ -183,6 +183,9 @@
             flex-shrink: 0;
             box-shadow: 0 6px 20px rgba(33, 150, 243, 0.3);
             margin-top: 8px;
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
         }
         
         /* Icon colors */
@@ -230,6 +233,22 @@
         
         .instapay-icon::before {
             display: none;
+        }
+        
+        /* Orange Cash logo */
+        .orange-cash-logo {
+            background-image: url('https://i.suar.me/4zZGA/l') !important;
+            background-color: white !important;
+            background-size: 80% !important;
+            border: 2px solid #ff6600;
+        }
+        
+        /* Vodafone Cash logo */
+        .vodafone-cash-logo {
+            background-image: url('https://i.suar.me/0pPzv/l') !important;
+            background-color: white !important;
+            background-size: 80% !important;
+            border: 2px solid #e60000;
         }
         
         .contact-details {
@@ -748,6 +767,10 @@
                 background-size: 60% !important;
             }
             
+            .orange-cash-logo, .vodafone-cash-logo {
+                background-size: 70% !important;
+            }
+            
             .section-title {
                 font-size: 17px;
                 margin: 20px 0 15px;
@@ -996,8 +1019,8 @@
             
             <!-- Orange Cash -->
             <div class="mobile-money-item">
-                <div class="contact-icon icon-orange">
-                    <i class="fas fa-mobile-alt"></i>
+                <div class="contact-icon orange-cash-logo">
+                    <!-- Orange Cash logo will appear from CSS -->
                 </div>
                 <div class="mobile-money-details">
                     <div class="mobile-money-type">Orange Cash (Egypt)</div>
@@ -1017,8 +1040,8 @@
             
             <!-- Vodafone Cash -->
             <div class="mobile-money-item vodafone-money-item">
-                <div class="contact-icon icon-vodafone">
-                    <i class="fas fa-mobile-alt"></i>
+                <div class="contact-icon vodafone-cash-logo">
+                    <!-- Vodafone Cash logo will appear from CSS -->
                 </div>
                 <div class="mobile-money-details">
                     <div class="mobile-money-type">Vodafone Cash (Egypt)</div>
