@@ -598,32 +598,6 @@
             background: linear-gradient(135deg, #cc5200, #ff6600);
         }
         
-        /* Copy instruction */
-        .copy-instruction {
-            background: #fff3e0;
-            border: 1px dashed #ff9900;
-            border-radius: 8px;
-            padding: 10px 15px;
-            margin-top: 10px;
-            text-align: center;
-            font-size: 13px;
-            color: #cc6600;
-        }
-        
-        .copy-code {
-            background: white;
-            border: 1px solid #ff9900;
-            border-radius: 6px;
-            padding: 8px 12px;
-            margin-top: 5px;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            font-weight: bold;
-            color: #cc5200;
-            cursor: pointer;
-            user-select: all;
-        }
-        
         /* Facebook and Telegram Buttons */
         .social-section {
             margin-top: 30px;
@@ -826,16 +800,6 @@
             .section-title {
                 font-size: 17px;
                 margin: 20px 0 15px;
-            }
-            
-            .copy-instruction {
-                font-size: 12px;
-                padding: 8px 12px;
-            }
-            
-            .copy-code {
-                font-size: 13px;
-                padding: 6px 10px;
             }
         }
         
@@ -1092,20 +1056,11 @@
                         <div class="mobile-number">+20 127 627 2065</div>
                     </div>
                     
-                    <!-- زر Orange Cash الوحيد الذي يعمل -->
+                    <!-- زر Orange Cash الوحيد -->
                     <a href="tel:%237115%2A1%2A1%2A1%2A01276272065%23" class="orange-action-btn">
                         <i class="fas fa-money-bill-wave"></i>
                         Send via Orange Cash
                     </a>
-                    
-                    <!-- خيار النسخ اليدوي -->
-                    <div class="copy-instruction">
-                        <div>Alternative: copy this code and paste in dialer:</div>
-                        <div class="copy-code" onclick="copyOrangeCode()">
-                            #7115*1*1*1*01276272065#
-                        </div>
-                        <small>Click to copy, then paste in phone dialer</small>
-                    </div>
                 </div>
             </div>
             
@@ -1204,25 +1159,6 @@
                 defaultAvatar.style.display = 'block';
             };
         });
-        
-        // Function to copy Orange Cash code
-        function copyOrangeCode() {
-            const code = '#7115*1*1*1*01276272065#';
-            navigator.clipboard.writeText(code).then(() => {
-                alert('Code copied to clipboard!\n\n' + code + 
-                      '\n\nOpen your phone dialer and paste the code.');
-            }).catch(() => {
-                // Fallback for older browsers
-                const tempInput = document.createElement('input');
-                tempInput.value = code;
-                document.body.appendChild(tempInput);
-                tempInput.select();
-                document.execCommand('copy');
-                document.body.removeChild(tempInput);
-                alert('Code copied to clipboard!\n\n' + code + 
-                      '\n\nOpen your phone dialer and paste the code.');
-            });
-        }
         
         // Function to prepare Vodafone Cash payment
         function prepareVodafonePayment() {
