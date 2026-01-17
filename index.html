@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html dir="rtl" lang="ar">
+<html dir="ltr" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -185,7 +185,7 @@
             margin-top: 8px;
         }
         
-        /* أيقونات خاصة */
+        /* Icon colors */
         .icon-whatsapp {
             background: linear-gradient(135deg, #25d366, #128c7e) !important;
         }
@@ -206,7 +206,19 @@
             background: linear-gradient(135deg, #1877f2, #0d5cb6) !important;
         }
         
-        /* أيقونة إنستاباي مخصصة */
+        .icon-telegram {
+            background: linear-gradient(135deg, #0088cc, #006699) !important;
+        }
+        
+        .icon-orange {
+            background: linear-gradient(135deg, #ff6600, #cc5200) !important;
+        }
+        
+        .icon-vodafone {
+            background: linear-gradient(135deg, #e60000, #b30000) !important;
+        }
+        
+        /* Instapay icon customization */
         .instapay-icon {
             position: relative;
             background: linear-gradient(135deg, #ff9800, #e65100) !important;
@@ -238,7 +250,7 @@
             font-weight: 800;
             color: #0d47a1;
             direction: ltr;
-            text-align: right;
+            text-align: left;
             margin-bottom: 8px;
             letter-spacing: 0.5px;
             font-family: 'Courier New', monospace;
@@ -288,7 +300,7 @@
             color: white;
         }
         
-        /* تصميم Email محسّن للهواتف */
+        /* Email design */
         .email-item {
             background: #fff8e1;
             border-color: #ffb74d;
@@ -321,7 +333,7 @@
             font-weight: 700;
             color: #0d47a1;
             direction: ltr;
-            text-align: right;
+            text-align: left;
             margin-bottom: 8px;
             letter-spacing: 0.5px;
             font-family: 'Courier New', monospace;
@@ -360,7 +372,7 @@
             background: linear-gradient(135deg, #e65100, #ff9800);
         }
         
-        /* تصميم إنستاباي محسّن */
+        /* Instapay design */
         .instapay-item {
             background: linear-gradient(135deg, #fff3e0, #ffecb3);
             border: 2px solid #ffb74d;
@@ -435,24 +447,126 @@
             background: linear-gradient(135deg, #e65100, #ff9800);
         }
         
-        .instapay-btn::before {
-            content: "💳";
-            font-weight: 900;
-            font-size: 20px;
-            font-family: 'Arial', sans-serif;
+        /* Orange Cash and Vodafone Cash design */
+        .mobile-money-item {
+            background: linear-gradient(135deg, #fff0e6, #ffe6cc);
+            border: 2px solid #ff6600;
+            padding: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            margin-bottom: 18px;
         }
         
-        /* Facebook Button Only */
-        .facebook-section {
-            margin-top: 30px;
+        .vodafone-money-item {
+            background: linear-gradient(135deg, #ffe6e6, #ffcccc);
+            border: 2px solid #e60000;
+        }
+        
+        .mobile-money-item:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 102, 0, 0.2);
+        }
+        
+        .vodafone-money-item:hover {
+            box-shadow: 0 10px 25px rgba(230, 0, 0, 0.2);
+        }
+        
+        .mobile-money-details {
+            flex: 1;
+        }
+        
+        .mobile-money-type {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .mobile-number-box {
+            background: white;
+            border-radius: 10px;
+            padding: 12px 15px;
+            margin: 8px 0 15px 0;
+            border: 2px dashed #ff6600;
             text-align: center;
         }
         
-        .facebook-btn {
+        .vodafone-number-box {
+            border-color: #e60000;
+        }
+        
+        .mobile-number-label {
+            font-size: 12px;
+            color: #ff6600;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+        
+        .vodafone-number-label {
+            color: #e60000;
+        }
+        
+        .mobile-number {
+            font-size: 20px;
+            font-weight: 900;
+            color: #cc5200;
+            direction: ltr;
+            letter-spacing: 1px;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+        }
+        
+        .vodafone-number {
+            color: #b30000;
+        }
+        
+        .mobile-money-btn {
+            background: linear-gradient(135deg, #ff6600, #cc5200);
+            color: white;
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 800;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.4s ease;
+            text-align: center;
+        }
+        
+        .vodafone-money-btn {
+            background: linear-gradient(135deg, #e60000, #b30000);
+        }
+        
+        .mobile-money-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 102, 0, 0.4);
+            background: linear-gradient(135deg, #cc5200, #ff6600);
+        }
+        
+        .vodafone-money-btn:hover {
+            box-shadow: 0 10px 25px rgba(230, 0, 0, 0.4);
+            background: linear-gradient(135deg, #b30000, #e60000);
+        }
+        
+        /* Facebook and Telegram Buttons */
+        .social-section {
+            margin-top: 30px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .social-btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 15px;
-            background: linear-gradient(135deg, #1877f2, #0d5cb6);
             color: white;
             padding: 18px 35px;
             border-radius: 15px;
@@ -460,16 +574,35 @@
             font-size: 18px;
             font-weight: 700;
             transition: all 0.4s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .facebook-btn {
+            background: linear-gradient(135deg, #1877f2, #0d5cb6);
             box-shadow: 0 10px 25px rgba(24, 119, 242, 0.3);
         }
         
-        .facebook-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(24, 119, 242, 0.4);
-            background: linear-gradient(135deg, #0d5cb6, #1877f2);
+        .telegram-btn {
+            background: linear-gradient(135deg, #0088cc, #006699);
+            box-shadow: 0 10px 25px rgba(0, 136, 204, 0.3);
         }
         
-        .facebook-btn i {
+        .social-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        .facebook-btn:hover {
+            background: linear-gradient(135deg, #0d5cb6, #1877f2);
+            box-shadow: 0 15px 35px rgba(24, 119, 242, 0.4);
+        }
+        
+        .telegram-btn:hover {
+            background: linear-gradient(135deg, #006699, #0088cc);
+            box-shadow: 0 15px 35px rgba(0, 136, 204, 0.4);
+        }
+        
+        .social-btn i {
             font-size: 28px;
         }
         
@@ -483,7 +616,7 @@
             border-top: 3px solid #e3f2fd;
         }
         
-        /* تصميم للهواتف */
+        /* Mobile design */
         @media (max-width: 480px) {
             .card-header {
                 padding: 30px 20px;
@@ -539,7 +672,7 @@
                 width: 100%;
             }
             
-            /* تصميم Email للهواتف */
+            /* Email for mobile */
             .email-item {
                 padding: 16px;
             }
@@ -573,7 +706,7 @@
                 font-size: 16px;
             }
             
-            /* إنستاباي للهواتف */
+            /* Instapay for mobile */
             .instapay-item {
                 padding: 16px;
                 flex-direction: column;
@@ -581,17 +714,25 @@
                 text-align: center;
             }
             
-            .instapay-username {
+            /* Mobile money for mobile */
+            .mobile-money-item {
+                padding: 16px;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .instapay-username, .mobile-number {
                 font-size: 18px;
             }
             
-            .instapay-btn {
+            .instapay-btn, .mobile-money-btn {
                 padding: 14px;
                 font-size: 15px;
             }
             
-            /* Facebook للهواتف */
-            .facebook-btn {
+            /* Social buttons for mobile */
+            .social-btn {
                 padding: 16px 25px;
                 font-size: 16px;
                 flex-direction: column;
@@ -599,7 +740,7 @@
                 width: 100%;
             }
             
-            .facebook-btn i {
+            .social-btn i {
                 font-size: 24px;
             }
             
@@ -613,7 +754,7 @@
             }
         }
         
-        /* تصميم للشاشات الصغيرة جداً */
+        /* Extra small screens */
         @media (max-width: 360px) {
             .card-body {
                 padding: 20px 15px;
@@ -627,7 +768,7 @@
                 font-size: 14px;
             }
             
-            .instapay-username {
+            .instapay-username, .mobile-number {
                 font-size: 16px;
             }
             
@@ -641,13 +782,13 @@
                 padding: 12px;
             }
             
-            .instapay-btn {
+            .instapay-btn, .mobile-money-btn {
                 font-size: 14px;
                 padding: 12px;
             }
         }
         
-        /* تأثيرات */
+        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -683,6 +824,20 @@
             animation: glow 3s infinite;
         }
         
+        @keyframes orangeGlow {
+            0% { box-shadow: 0 0 10px rgba(255, 102, 0, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(255, 102, 0, 0.8); }
+            100% { box-shadow: 0 0 10px rgba(255, 102, 0, 0.5); }
+        }
+        
+        .mobile-money-item {
+            animation: orangeGlow 3s infinite;
+        }
+        
+        .vodafone-money-item {
+            animation: orangeGlow 3s infinite;
+        }
+        
         @keyframes facebookGlow {
             0% { box-shadow: 0 0 10px rgba(24, 119, 242, 0.5); }
             50% { box-shadow: 0 0 25px rgba(24, 119, 242, 0.8); }
@@ -691,6 +846,16 @@
         
         .facebook-btn {
             animation: facebookGlow 3s infinite;
+        }
+        
+        @keyframes telegramGlow {
+            0% { box-shadow: 0 0 10px rgba(0, 136, 204, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(0, 136, 204, 0.8); }
+            100% { box-shadow: 0 0 10px rgba(0, 136, 204, 0.5); }
+        }
+        
+        .telegram-btn {
+            animation: telegramGlow 3s infinite;
         }
     </style>
 </head>
@@ -717,7 +882,7 @@
         </div>
         
         <div class="card-body">
-            <!-- أرقام الهاتف -->
+            <!-- Phone Numbers -->
             <div class="section-title">
                 <span>📱</span>
                 <span>Contact Numbers</span>
@@ -823,6 +988,54 @@
                 </div>
             </div>
             
+            <!-- Orange Cash -->
+            <div class="section-title">
+                <span>💰</span>
+                <span>Mobile Money Payments</span>
+            </div>
+            
+            <!-- Orange Cash -->
+            <div class="mobile-money-item">
+                <div class="contact-icon icon-orange">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="mobile-money-details">
+                    <div class="mobile-money-type">Orange Cash (Egypt)</div>
+                    
+                    <div class="mobile-number-box">
+                        <div class="mobile-number-label">Send payment to:</div>
+                        <div class="mobile-number">+20 127 627 2065</div>
+                    </div>
+                    
+                    <!-- Orange Cash App Link -->
+                    <a href="tel:*9*1*1276272065*AMOUNT#" class="mobile-money-btn" onclick="return prepareOrangePayment()">
+                        <i class="fas fa-money-bill-wave"></i>
+                        Send via Orange Cash
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Vodafone Cash -->
+            <div class="mobile-money-item vodafone-money-item">
+                <div class="contact-icon icon-vodafone">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="mobile-money-details">
+                    <div class="mobile-money-type">Vodafone Cash (Egypt)</div>
+                    
+                    <div class="mobile-number-box vodafone-number-box">
+                        <div class="mobile-number-label vodafone-number-label">Send payment to:</div>
+                        <div class="mobile-number vodafone-number">+20 106 078 2884</div>
+                    </div>
+                    
+                    <!-- Vodafone Cash App Link -->
+                    <a href="tel:*9*1*1060782884*AMOUNT#" class="mobile-money-btn vodafone-money-btn" onclick="return prepareVodafonePayment()">
+                        <i class="fas fa-money-bill-wave"></i>
+                        Send via Vodafone Cash
+                    </a>
+                </div>
+            </div>
+            
             <!-- Instapay -->
             <div class="section-title">
                 <span>💳</span>
@@ -831,7 +1044,7 @@
             
             <div class="instapay-item">
                 <div class="contact-icon instapay-icon">
-                    <!-- الأيقونة الجديدة ستظهر من CSS -->
+                    <!-- Icon will appear from CSS -->
                 </div>
                 <div class="instapay-details">
                     <div class="instapay-type">Instapay Username</div>
@@ -841,23 +1054,29 @@
                         <div class="instapay-username">elqiser2@instapay</div>
                     </div>
                     
-                    <!-- الرابط المباشر لإنستاباي -->
+                    <!-- Direct link to Instapay -->
                     <a href="https://ipn.eg/S/elqiser2/instapay/2uNC60" class="instapay-btn">
                         Open Instapay App
                     </a>
                 </div>
             </div>
             
-            <!-- Facebook Only -->
+            <!-- Social Media -->
             <div class="section-title">
                 <span>🌐</span>
                 <span>Social Media</span>
             </div>
             
-            <div class="facebook-section">
-                <a href="https://www.facebook.com/ellqiser" class="facebook-btn">
+            <div class="social-section">
+                <a href="https://www.facebook.com/ellqiser" class="social-btn facebook-btn">
                     <i class="fab fa-facebook-square"></i>
                     <span>Visit Facebook Profile</span>
+                </a>
+                
+                <!-- Telegram Button -->
+                <a href="https://t.me/ELQISEER" class="social-btn telegram-btn">
+                    <i class="fab fa-telegram"></i>
+                    <span>Join Telegram Channel</span>
                 </a>
             </div>
         </div>
@@ -868,19 +1087,19 @@
     </div>
     
     <script>
-        // رابط صورتك على GitHub
+        // Your image link on GitHub
         const githubImageUrl = 'https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg';
         
-        // عناصر DOM
+        // DOM elements
         const profileImage = document.getElementById('profileImage');
         const defaultAvatar = document.getElementById('defaultAvatar');
         
-        // تحميل الصورة عند فتح الصفحة
+        // Load image when page opens
         window.addEventListener('load', () => {
-            // استخدام الصورة من GitHub مع timestamp لمنع التخزين المؤقت
+            // Use GitHub image with timestamp to prevent caching
             profileImage.src = githubImageUrl + '?t=' + new Date().getTime();
             
-            // التحقق من نجاح تحميل الصورة
+            // Check if image loaded successfully
             profileImage.onload = function() {
                 profileImage.style.display = 'block';
                 defaultAvatar.style.display = 'none';
@@ -892,12 +1111,40 @@
             };
         });
         
-        // تتبع الزيارات
+        // Function to prepare Orange Cash payment
+        function prepareOrangePayment() {
+            const amount = prompt("Enter the amount to send via Orange Cash:", "0");
+            if (amount && !isNaN(amount) && parseFloat(amount) > 0) {
+                const encodedAmount = encodeURIComponent(amount);
+                const orangeCashLink = `tel:*9*1*1276272065*${encodedAmount}#`;
+                window.location.href = orangeCashLink;
+                return false;
+            } else if (amount !== null) {
+                alert("Please enter a valid amount");
+            }
+            return false;
+        }
+        
+        // Function to prepare Vodafone Cash payment
+        function prepareVodafonePayment() {
+            const amount = prompt("Enter the amount to send via Vodafone Cash:", "0");
+            if (amount && !isNaN(amount) && parseFloat(amount) > 0) {
+                const encodedAmount = encodeURIComponent(amount);
+                const vodafoneCashLink = `tel:*9*1*1060782884*${encodedAmount}#`;
+                window.location.href = vodafoneCashLink;
+                return false;
+            } else if (amount !== null) {
+                alert("Please enter a valid amount");
+            }
+            return false;
+        }
+        
+        // Track visits
         let visits = localStorage.getItem('alber_visits') || 0;
         visits = parseInt(visits) + 1;
         localStorage.setItem('alber_visits', visits);
         
-        // تأثيرات عند التحميل
+        // Effects on load
         setTimeout(() => {
             document.querySelectorAll('.contact-item').forEach((item, index) => {
                 setTimeout(() => {
@@ -909,17 +1156,17 @@
             });
             
             setTimeout(() => {
-                const instapayItem = document.querySelector('.instapay-item');
-                if (instapayItem) {
-                    instapayItem.style.opacity = '0';
-                    instapayItem.style.transform = 'translateY(20px)';
-                    instapayItem.style.animation = 'fadeInUp 0.5s ease forwards';
-                    instapayItem.style.animationDelay = '0.4s';
-                }
+                const mobileMoneyItems = document.querySelectorAll('.mobile-money-item, .instapay-item');
+                mobileMoneyItems.forEach((item, index) => {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    item.style.animation = 'fadeInUp 0.5s ease forwards';
+                    item.style.animationDelay = (index * 0.2) + 's';
+                });
             }, 100);
         }, 500);
         
-        // حفظ بيانات الزيارة
+        // Save visit data
         const visitData = {
             lastVisit: new Date().toISOString(),
             visitCount: visits,
