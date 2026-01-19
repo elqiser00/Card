@@ -1,11 +1,36 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html dir="rtl" lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Digital Business Card - Alber Samir - IT Specialist">
+    <meta property="og:title" content="Digital Business Card - Alber Samir">
+    <meta property="og:description" content="IT Specialist | Data Entry Operator | Computer Software Technician">
+    <meta property="og:image" content="https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg">
     <title>Digital Card - Alber Samir</title>
+    <script type="text/javascript" nonce="716b1c5f977c47db9fad71395df" src="//local.adguard.org?ts=1768861014268&amp;type=content-script&amp;dmn=agent.minimax.io&amp;url=https%3A%2F%2Fagent.minimax.io%2Fmatrix%2Fapi%2Fv1%2Fstorage%2Fobject%2Fchat%2F357611784753499%2Findex.html&amp;app=chrome.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1&amp;stealth=1&amp;st-loc&amp;st-dnt"></script><script type="text/javascript" nonce="716b1c5f977c47db9fad71395df" src="//local.adguard.org?ts=1768861014268&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;name=Web%20of%20Trust&amp;type=user-script"></script><link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #0d47a1;
+            --primary-dark: #0a3b8c;
+            --primary-light: #1565c0;
+            --secondary-color: #ff9800;
+            --accent-green: #25d366;
+            --accent-blue: #0088cc;
+            --accent-facebook: #1877f2;
+            --bg-gradient: linear-gradient(135deg, #1a237e 0%, #283593 50%, #1a237e 100%);
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-dark: #1a1a2e;
+            --text-muted: #666;
+            --shadow-soft: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --shadow-strong: 0 20px 60px rgba(0, 0, 0, 0.3);
+            --glass-bg: rgba(255, 255, 255, 0.15);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -13,30 +38,85 @@
         }
         
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            background: var(--bg-gradient);
             min-height: 100vh;
             display: flex;
             justify-content: center;
-            align-items: center;
+            align-items: flex-start;
             padding: 20px;
             line-height: 1.6;
+            position: relative;
+            overflow-x: hidden;
         }
-        
-        .business-card {
-            background: white;
-            border-radius: 25px;
+
+        /* Animated background shapes */
+        .bg-shapes {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 450px;
-            box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-shapes::before,
+        .bg-shapes::after {
+            content: '';
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .bg-shapes::before {
+            width: 400px;
+            height: 400px;
+            background: var(--secondary-color);
+            top: -100px;
+            right: -100px;
+            animation-delay: 0s;
+        }
+
+        .bg-shapes::after {
+            width: 300px;
+            height: 300px;
+            background: var(--primary-light);
+            bottom: -50px;
+            left: -50px;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            25% { transform: translate(20px, -20px) scale(1.05); }
+            50% { transform: translate(-10px, 20px) scale(0.95); }
+            75% { transform: translate(15px, 15px) scale(1.02); }
+        }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .business-card {
+            background: var(--card-bg);
+            border-radius: 30px;
+            width: 100%;
+            box-shadow: var(--shadow-strong);
             overflow: hidden;
             transition: transform 0.3s ease;
+            backdrop-filter: blur(10px);
         }
         
         .card-header {
-            background: linear-gradient(135deg, #0d47a1, #1565c0);
+            background: linear-gradient(135deg, #0d47a1, #1565c0, #1976d2);
             color: white;
-            padding: 40px 30px;
+            padding: 50px 30px 40px;
             text-align: center;
             position: relative;
             overflow: hidden;
@@ -45,35 +125,56 @@
         .card-header::before {
             content: '';
             position: absolute;
-            top: 0;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .card-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path d="M0,0 L100,0 L100,100 Z" fill="rgba(255,255,255,0.1)"/></svg>');
-            background-size: cover;
-            opacity: 0.3;
+            height: 40px;
+            background: var(--card-bg);
+            clip-path: ellipse(60% 100% at 50% 100%);
         }
         
         .profile-container {
             position: relative;
-            width: 160px;
-            height: 160px;
-            margin: 0 auto 25px;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 20px;
+            z-index: 2;
         }
         
         .profile-frame {
-            width: 160px;
-            height: 160px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-            border: 6px solid rgba(255, 255, 255, 0.8);
+            border: 6px solid rgba(255, 255, 255, 0.9);
             background: linear-gradient(135deg, #2196f3, #0d47a1);
             display: flex;
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
             position: relative;
             z-index: 2;
+            transition: transform 0.3s ease;
+        }
+
+        .profile-frame:hover {
+            transform: scale(1.05);
         }
         
         .profile-image {
@@ -81,100 +182,201 @@
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
+            transition: opacity 0.3s ease;
         }
         
         .default-avatar {
-            font-size: 70px;
+            font-size: 80px;
             color: white;
+            display: none;
+        }
+
+        .status-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: var(--accent-green);
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: 4px solid white;
+            z-index: 3;
+            animation: pulse-green 2s infinite;
+        }
+
+        @keyframes pulse-green {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            50% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
         }
         
         .name {
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 10px;
+            font-size: 36px;
+            font-weight: 900;
+            margin-bottom: 8px;
             letter-spacing: 0.5px;
             position: relative;
             z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
         }
         
         .title {
             font-size: 16px;
             opacity: 0.95;
-            font-weight: 400;
+            font-weight: 500;
             position: relative;
             z-index: 2;
-            line-height: 1.5;
+            line-height: 1.6;
+            margin-bottom: 15px;
         }
         
         .profession-badges {
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-top: 15px;
             flex-wrap: wrap;
             position: relative;
             z-index: 2;
         }
         
         .badge {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
+            background: rgba(255, 255, 255, 0.25);
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 700;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .badge:hover {
+            background: rgba(255, 255, 255, 0.35);
+            transform: translateY(-2px);
         }
         
         .card-body {
-            padding: 35px 30px;
+            padding: 30px 25px 40px;
+            position: relative;
+        }
+
+        .quick-actions {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .quick-action-btn {
+            flex: 1;
+            min-width: 120px;
+            padding: 14px 20px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-family: inherit;
+        }
+
+        .save-contact-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            color: white;
+            box-shadow: 0 8px 25px rgba(13, 71, 161, 0.35);
+        }
+
+        .save-contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(13, 71, 161, 0.45);
+        }
+
+        .share-btn {
+            background: linear-gradient(135deg, var(--secondary-color), #e65100);
+            color: white;
+            box-shadow: 0 8px 25px rgba(255, 152, 0, 0.35);
+        }
+
+        .share-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 152, 0, 0.45);
+        }
+
+        .qr-btn {
+            background: linear-gradient(135deg, #7c4dff, #536dfe);
+            color: white;
+            box-shadow: 0 8px 25px rgba(124, 77, 255, 0.35);
+        }
+
+        .qr-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(124, 77, 255, 0.45);
         }
         
         .section-title {
-            color: #0d47a1;
-            font-size: 18px;
-            font-weight: 700;
-            margin: 25px 0 18px;
+            color: var(--primary-color);
+            font-size: 20px;
+            font-weight: 800;
+            margin: 30px 0 18px;
             padding-bottom: 12px;
-            border-bottom: 2px solid #e3f2fd;
+            border-bottom: 3px solid #e3f2fd;
             display: flex;
             align-items: center;
             gap: 12px;
         }
-        
+
         .section-title:first-child {
             margin-top: 0;
+        }
+
+        .section-title i {
+            color: var(--secondary-color);
         }
         
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr;
             gap: 18px;
-            margin-bottom: 15px;
         }
         
         .contact-item {
-            background: #f8fbff;
-            border-radius: 18px;
+            background: linear-gradient(135deg, #f8fbff, #ffffff);
+            border-radius: 20px;
             padding: 20px;
             border: 2px solid #e3f2fd;
             transition: all 0.4s ease;
             display: flex;
             align-items: flex-start;
             gap: 18px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary-color), var(--primary-light));
         }
         
         .contact-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(13, 71, 161, 0.15);
-            border-color: #2196f3;
-            background: white;
+            box-shadow: 0 15px 40px rgba(13, 71, 161, 0.15);
+            border-color: var(--primary-light);
         }
         
         .contact-icon {
             width: 55px;
             height: 55px;
-            border-radius: 14px;
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -182,10 +384,7 @@
             font-size: 24px;
             flex-shrink: 0;
             box-shadow: 0 6px 20px rgba(33, 150, 243, 0.3);
-            margin-top: 8px;
-            background-size: cover !important;
-            background-position: center !important;
-            background-repeat: no-repeat !important;
+            margin-top: 5px;
         }
         
         /* Icon colors */
@@ -221,37 +420,6 @@
             background: linear-gradient(135deg, #e60000, #b30000) !important;
         }
         
-        /* Instapay icon customization */
-        .instapay-icon {
-            position: relative;
-            background: linear-gradient(135deg, #ff9800, #e65100) !important;
-            background-image: url('https://play-lh.googleusercontent.com/Pv1p8v-KJq4Z_LLOjQjBZpK8DNJg4Zb5aNOQY7WfoiHR4Gfs165Z1TTNMThZ883Yfg=w480-h960-rw') !important;
-            background-size: 65% !important;
-            background-position: center !important;
-            background-repeat: no-repeat !important;
-            border: 2px solid #ff9800;
-        }
-        
-        .instapay-icon::before {
-            display: none;
-        }
-        
-        /* Orange Cash icon */
-        .orange-cash-icon {
-            background-image: url('https://play-lh.googleusercontent.com/WRX_zk7PpmhnQ4q6VM7pIR10LvDLlbwvPyeQ9PYZHXmvx4_B6dxEC-eyGSRQhApqaHY=w240-h480-rw') !important;
-            background-color: white !important;
-            background-size: 75% !important;
-            border: 2px solid #ff6600;
-        }
-        
-        /* Vodafone Cash icon */
-        .vodafone-cash-icon {
-            background-image: url('https://i.suar.me/Eprql/l') !important;
-            background-color: white !important;
-            background-size: 75% !important;
-            border: 2px solid #e60000;
-        }
-        
         .contact-details {
             flex: 1;
             width: 100%;
@@ -259,48 +427,98 @@
         }
         
         .contact-type {
-            font-size: 14px;
-            color: #666;
+            font-size: 13px;
+            color: var(--text-muted);
             margin-bottom: 8px;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .phone-number {
-            font-size: 19px;
+            font-size: 20px;
             font-weight: 800;
-            color: #0d47a1;
+            color: var(--primary-color);
             direction: ltr;
             text-align: left;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
             letter-spacing: 0.5px;
             font-family: 'Courier New', monospace;
             word-break: break-all;
             overflow-wrap: break-word;
             width: 100%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            background: rgba(13, 71, 161, 0.05);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .phone-number:hover {
+            background: rgba(13, 71, 161, 0.1);
+        }
+
+        .phone-number .number-text {
+            flex: 1;
+        }
+
+        .copy-hint {
+            font-size: 11px;
+            color: var(--secondary-color);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+            margin-right: 10px;
+        }
+
+        .phone-number:hover .copy-hint {
+            opacity: 1;
+        }
+
+        .copy-icon {
+            width: 24px;
+            height: 24px;
+            background: var(--secondary-color);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            opacity: 0;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .phone-number:hover .copy-icon {
+            opacity: 1;
         }
         
         .country-flag {
-            display: inline-block;
-            margin-left: 12px;
             font-size: 20px;
-            vertical-align: middle;
+            margin-right: 8px;
         }
         
         .contact-buttons {
             display: flex;
-            gap: 12px;
-            margin-top: 12px;
+            gap: 10px;
+            margin-top: 10px;
             width: 100%;
         }
         
         .contact-btn {
-            padding: 10px 18px;
-            border-radius: 10px;
+            padding: 12px 18px;
+            border-radius: 12px;
             font-size: 14px;
             font-weight: 700;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
             transition: all 0.3s ease;
             flex: 1;
@@ -319,15 +537,24 @@
             background: linear-gradient(135deg, #4caf50, #2e7d32);
             color: white;
         }
+
+        .whatsapp-btn:hover, .call-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
         
         /* Email design */
         .email-item {
-            background: #fff8e1;
+            background: linear-gradient(135deg, #fff8e1, #ffecb3);
             border-color: #ffb74d;
             display: flex;
             flex-direction: column;
             align-items: stretch;
             padding: 20px;
+        }
+
+        .email-item::before {
+            background: linear-gradient(180deg, var(--secondary-color), #e65100);
         }
         
         .email-content {
@@ -349,9 +576,9 @@
         }
         
         .email-address {
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 700;
-            color: #0d47a1;
+            color: var(--primary-color);
             direction: ltr;
             text-align: left;
             margin-bottom: 8px;
@@ -361,20 +588,27 @@
             overflow-wrap: break-word;
             display: block;
             width: 100%;
-            padding: 2px 0;
+            padding: 8px 12px;
+            background: rgba(13, 71, 161, 0.05);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .email-address:hover {
+            background: rgba(13, 71, 161, 0.1);
         }
         
         .email-btn-container {
             width: 100%;
-            margin-top: 10px;
         }
         
         .email-btn {
             background: linear-gradient(135deg, #ff9800, #e65100);
             color: white;
             width: 100%;
-            padding: 12px 20px;
-            border-radius: 10px;
+            padding: 14px 20px;
+            border-radius: 12px;
             font-size: 15px;
             font-weight: 700;
             text-decoration: none;
@@ -389,62 +623,187 @@
         .email-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(255, 152, 0, 0.4);
-            background: linear-gradient(135deg, #e65100, #ff9800);
+        }
+
+        /* Payment methods design */
+        .payment-section {
+            display: grid;
+            gap: 15px;
         }
         
-        /* Instapay design */
-        .instapay-item {
+        .payment-card {
             background: linear-gradient(135deg, #fff3e0, #ffecb3);
             border: 2px solid #ffb74d;
+            border-radius: 20px;
             padding: 20px;
             display: flex;
             align-items: flex-start;
             gap: 18px;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
-        
-        .instapay-item:hover {
-            border-color: #ff9800;
+
+        .payment-card:hover {
+            transform: translateY(-3px);
             box-shadow: 0 15px 35px rgba(255, 152, 0, 0.2);
         }
+
+        .payment-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--secondary-color), #e65100);
+        }
         
-        .instapay-details {
+        .payment-card.vodafone {
+            background: linear-gradient(135deg, #ffe6e6, #ffcccc);
+            border-color: #ef5350;
+        }
+
+        .payment-card.vodafone::before {
+            background: linear-gradient(180deg, #e60000, #b30000);
+        }
+
+        .payment-card.instapay {
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+            border-color: #66bb6a;
+        }
+
+        .payment-card.instapay::before {
+            background: linear-gradient(180deg, #43a047, #2e7d32);
+        }
+
+        .payment-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            margin-top: 5px;
+            background-size: 70% !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            background-color: white !important;
+        }
+        
+        .payment-icon.orange {
+            background: linear-gradient(135deg, #ff6600, #cc5200) !important;
+            background-image: url('https://play-lh.googleusercontent.com/WRX_zk7PpmhnQ4q6VM7pIR10LvDLlbwvPyeQ9PYZHXmvx4_B6dxEC-eyGSRQhApqaHY=w240-h480-rw') !important;
+            border: 2px solid #ff6600;
+        }
+        
+        .payment-icon.vodafone {
+            background: linear-gradient(135deg, #e60000, #b30000) !important;
+            background-image: url('https://i.suar.me/Eprql/l') !important;
+            background-color: white !important;
+            border: 2px solid #e60000;
+        }
+        
+        .payment-icon.instapay {
+            background: linear-gradient(135deg, #ff9800, #e65100) !important;
+            background-image: url('https://play-lh.googleusercontent.com/Pv1p8v-KJq4Z_LLOjQjBZpK8DNJg4Zb5aNOQY7WfoiHR4Gfs165Z1TTNMThZ883Yfg=w480-h960-rw') !important;
+            border: 2px solid #ff9800;
+        }
+        
+        .payment-details {
             flex: 1;
         }
         
-        .instapay-type {
+        .payment-type {
             font-size: 14px;
-            color: #666;
+            color: var(--text-muted);
             margin-bottom: 8px;
             font-weight: 600;
         }
         
-        .instapay-username-box {
+        .payment-value-box {
             background: white;
-            border-radius: 10px;
+            border-radius: 12px;
             padding: 12px 15px;
-            margin: 8px 0 15px 0;
-            border: 2px dashed #ff9800;
+            margin: 10px 0 15px 0;
+            border: 2px dashed var(--secondary-color);
             text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
         }
-        
-        .instapay-username-label {
+
+        .payment-card.vodafone .payment-value-box {
+            border-color: #e60000;
+        }
+
+        .payment-card.instapay .payment-value-box {
+            border-color: #43a047;
+        }
+
+        .payment-value-box:hover {
+            background: rgba(255, 152, 0, 0.05);
+            transform: scale(1.02);
+        }
+
+        .payment-value-label {
             font-size: 12px;
-            color: #ff9800;
+            color: var(--secondary-color);
             font-weight: 700;
-            margin-bottom: 5px;
         }
-        
-        .instapay-username {
+
+        .payment-card.vodafone .payment-value-label {
+            color: #e60000;
+        }
+
+        .payment-card.instapay .payment-value-label {
+            color: #43a047;
+        }
+
+        .payment-value {
             font-size: 20px;
             font-weight: 900;
-            color: #e65100;
+            color: #cc5200;
             direction: ltr;
             letter-spacing: 1px;
             font-family: 'Courier New', monospace;
             word-break: break-all;
         }
+
+        .payment-card.vodafone .payment-value {
+            color: #b30000;
+        }
+
+        .payment-card.instapay .payment-value {
+            color: #2e7d32;
+        }
+
+        .copy-icon-small {
+            width: 22px;
+            height: 22px;
+            background: var(--secondary-color);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 11px;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .payment-value-box:hover .copy-icon-small {
+            opacity: 1;
+        }
         
-        .instapay-btn {
+        .payment-btn {
             background: linear-gradient(135deg, #ff9800, #e65100);
             color: white;
             width: 100%;
@@ -460,147 +819,31 @@
             transition: all 0.4s ease;
             text-align: center;
         }
-        
-        .instapay-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 152, 0, 0.4);
-            background: linear-gradient(135deg, #e65100, #ff9800);
-        }
-        
-        /* Orange Cash and Vodafone Cash design */
-        .mobile-money-item {
-            background: linear-gradient(135deg, #fff0e6, #ffe6cc);
-            border: 2px solid #ff6600;
-            padding: 20px;
-            display: flex;
-            align-items: flex-start;
-            gap: 18px;
-            margin-bottom: 18px;
-        }
-        
-        .vodafone-money-item {
-            background: linear-gradient(135deg, #ffe6e6, #ffcccc);
-            border: 2px solid #e60000;
-        }
-        
-        .mobile-money-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 102, 0, 0.2);
-        }
-        
-        .vodafone-money-item:hover {
-            box-shadow: 0 10px 25px rgba(230, 0, 0, 0.2);
-        }
-        
-        .mobile-money-details {
-            flex: 1;
-        }
-        
-        .mobile-money-type {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        
-        .mobile-number-box {
-            background: white;
-            border-radius: 10px;
-            padding: 12px 15px;
-            margin: 8px 0 15px 0;
-            border: 2px dashed #ff6600;
-            text-align: center;
-        }
-        
-        .vodafone-number-box {
-            border-color: #e60000;
-        }
-        
-        .mobile-number-label {
-            font-size: 12px;
-            color: #ff6600;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-        
-        .vodafone-number-label {
-            color: #e60000;
-        }
-        
-        .mobile-number {
-            font-size: 20px;
-            font-weight: 900;
-            color: #cc5200;
-            direction: ltr;
-            letter-spacing: 1px;
-            font-family: 'Courier New', monospace;
-            word-break: break-all;
-        }
-        
-        .vodafone-number {
-            color: #b30000;
-        }
-        
-        .mobile-money-btn {
-            background: linear-gradient(135deg, #ff6600, #cc5200);
-            color: white;
-            width: 100%;
-            padding: 14px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 800;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            transition: all 0.4s ease;
-            text-align: center;
-        }
-        
-        .vodafone-money-btn {
+
+        .payment-card.vodafone .payment-btn {
             background: linear-gradient(135deg, #e60000, #b30000);
         }
-        
-        .mobile-money-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 102, 0, 0.4);
-            background: linear-gradient(135deg, #cc5200, #ff6600);
+
+        .payment-card.instapay .payment-btn {
+            background: linear-gradient(135deg, #43a047, #2e7d32);
         }
         
-        .vodafone-money-btn:hover {
+        .payment-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 152, 0, 0.4);
+        }
+
+        .payment-card.vodafone .payment-btn:hover {
             box-shadow: 0 10px 25px rgba(230, 0, 0, 0.4);
-            background: linear-gradient(135deg, #b30000, #e60000);
+        }
+
+        .payment-card.instapay .payment-btn:hover {
+            box-shadow: 0 10px 25px rgba(67, 160, 71, 0.4);
         }
         
-        /* Orange Cash action button */
-        .orange-action-btn {
-            background: linear-gradient(135deg, #ff6600, #cc5200);
-            color: white;
-            width: 100%;
-            padding: 14px;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 800;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            transition: all 0.4s ease;
-            text-align: center;
-            margin-top: 15px;
-        }
-        
-        .orange-action-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255, 102, 0, 0.4);
-            background: linear-gradient(135deg, #cc5200, #ff6600);
-        }
-        
-        /* Facebook and Telegram Buttons */
+        /* Social Media */
         .social-section {
-            margin-top: 30px;
+            margin-top: 35px;
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -614,9 +857,9 @@
             gap: 15px;
             color: white;
             padding: 18px 35px;
-            border-radius: 15px;
+            border-radius: 18px;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
             transition: all 0.4s ease;
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
@@ -636,207 +879,172 @@
             transform: translateY(-5px);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
         }
-        
-        .facebook-btn:hover {
-            background: linear-gradient(135deg, #0d5cb6, #1877f2);
-            box-shadow: 0 15px 35px rgba(24, 119, 242, 0.4);
-        }
-        
-        .telegram-btn:hover {
-            background: linear-gradient(135deg, #006699, #0088cc);
-            box-shadow: 0 15px 35px rgba(0, 136, 204, 0.4);
-        }
-        
+
         .social-btn i {
             font-size: 28px;
         }
         
         .card-footer {
             text-align: center;
-            padding: 20px;
-            background: #f8fbff;
-            color: #5c6bc0;
-            font-size: 13px;
-            font-weight: 500;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8fbff, #e3f2fd);
+            color: var(--primary-color);
+            font-size: 14px;
+            font-weight: 600;
             border-top: 3px solid #e3f2fd;
         }
-        
-        /* Mobile design */
-        @media (max-width: 480px) {
-            .card-header {
-                padding: 30px 20px;
-            }
-            
-            .profile-container {
-                width: 130px;
-                height: 130px;
-            }
-            
-            .profile-frame {
-                width: 130px;
-                height: 130px;
-                border-width: 5px;
-            }
-            
-            .name {
-                font-size: 26px;
-            }
-            
-            .title {
-                font-size: 15px;
-            }
-            
-            .card-body {
-                padding: 25px 20px;
-            }
-            
-            .contact-item {
-                padding: 16px;
-                gap: 15px;
-            }
-            
-            .contact-icon {
-                width: 50px;
-                height: 50px;
-                font-size: 22px;
-            }
-            
-            .phone-number {
-                font-size: 16px;
-                letter-spacing: 0.3px;
-            }
-            
-            .contact-buttons {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .contact-btn {
-                padding: 12px;
-                font-size: 15px;
-                width: 100%;
-            }
-            
-            /* Email for mobile */
-            .email-item {
-                padding: 16px;
-            }
-            
-            .email-content {
-                flex-direction: column;
-                gap: 12px;
-                align-items: center;
-            }
-            
-            .email-icon-wrapper {
-                margin-bottom: 5px;
-            }
-            
-            .email-details {
-                width: 100%;
-                text-align: center;
-            }
-            
-            .email-address {
-                font-size: 15px;
-                text-align: center;
-                padding: 8px;
-                background: rgba(255, 255, 255, 0.7);
-                border-radius: 8px;
-                margin-bottom: 12px;
-            }
-            
-            .email-btn {
-                padding: 14px;
-                font-size: 16px;
-            }
-            
-            /* Instapay for mobile */
-            .instapay-item {
-                padding: 16px;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            
-            /* Mobile money for mobile */
-            .mobile-money-item {
-                padding: 16px;
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            
-            .instapay-username, .mobile-number {
-                font-size: 18px;
-            }
-            
-            .instapay-btn, .mobile-money-btn, .orange-action-btn {
-                padding: 14px;
-                font-size: 15px;
-            }
-            
-            /* Social buttons for mobile */
-            .social-btn {
-                padding: 16px 25px;
-                font-size: 16px;
-                flex-direction: column;
-                gap: 10px;
-                width: 100%;
-            }
-            
-            .social-btn i {
-                font-size: 24px;
-            }
-            
-            .instapay-icon {
-                background-size: 55% !important;
-            }
-            
-            .orange-cash-icon, .vodafone-cash-icon {
-                background-size: 65% !important;
-            }
-            
-            .section-title {
-                font-size: 17px;
-                margin: 20px 0 15px;
-            }
+
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 15px;
         }
-        
-        /* Extra small screens */
-        @media (max-width: 360px) {
-            .card-body {
-                padding: 20px 15px;
-            }
-            
-            .phone-number {
-                font-size: 15px;
-            }
-            
-            .email-address {
-                font-size: 14px;
-            }
-            
-            .instapay-username, .mobile-number {
-                font-size: 16px;
-            }
-            
-            .contact-btn {
-                font-size: 14px;
-                padding: 10px;
-            }
-            
-            .email-btn {
-                font-size: 15px;
-                padding: 12px;
-            }
-            
-            .instapay-btn, .mobile-money-btn, .orange-action-btn {
-                font-size: 14px;
-                padding: 12px;
-            }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
-        
+
+        .footer-social a:hover {
+            transform: translateY(-3px);
+            background: var(--primary-dark);
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: linear-gradient(135deg, #43a047, #2e7d32);
+            color: white;
+            padding: 16px 30px;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 15px;
+            box-shadow: 0 10px 40px rgba(67, 160, 71, 0.4);
+            z-index: 1000;
+            opacity: 0;
+            transition: all 0.4s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        .toast.error {
+            background: linear-gradient(135deg, #ef5350, #c62828);
+            box-shadow: 0 10px 40px rgba(239, 83, 80, 0.4);
+        }
+
+        .toast i {
+            font-size: 20px;
+        }
+
+        /* QR Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 20px;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 25px;
+            padding: 30px;
+            max-width: 350px;
+            width: 100%;
+            text-align: center;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-header {
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            color: var(--primary-color);
+            font-size: 22px;
+            font-weight: 800;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #f5f5f5;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: #ef5350;
+            color: white;
+        }
+
+        .qr-container {
+            background: #f8fbff;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #e3f2fd;
+        }
+
+        .qr-container img {
+            width: 200px;
+            height: 200px;
+        }
+
+        .qr-hint {
+            color: var(--text-muted);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -848,307 +1056,458 @@
                 transform: translateY(0);
             }
         }
-        
-        .business-card {
-            animation: fadeInUp 0.8s ease;
-        }
-        
+
         @keyframes pulse {
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
         }
-        
-        .profile-frame {
-            animation: pulse 4s infinite;
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
         }
-        
-        @keyframes glow {
-            0% { box-shadow: 0 0 10px rgba(255, 152, 0, 0.5); }
-            50% { box-shadow: 0 0 25px rgba(255, 152, 0, 0.8); }
-            100% { box-shadow: 0 0 10px rgba(255, 152, 0, 0.5); }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease forwards;
         }
-        
-        .instapay-item {
-            animation: glow 3s infinite;
+
+        /* Mobile design */
+        @media (max-width: 480px) {
+            body {
+                padding: 15px 10px;
+            }
+
+            .card-header {
+                padding: 40px 20px 35px;
+            }
+            
+            .profile-container {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .profile-frame {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .name {
+                font-size: 28px;
+            }
+            
+            .title {
+                font-size: 14px;
+            }
+            
+            .badge {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+            
+            .card-body {
+                padding: 25px 18px 30px;
+            }
+
+            .quick-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .quick-action-btn {
+                width: 100%;
+            }
+            
+            .contact-item {
+                padding: 16px;
+                gap: 14px;
+            }
+
+            .contact-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 22px;
+            }
+
+            .phone-number {
+                font-size: 17px;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .payment-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 15px;
+            }
+
+            .payment-value-box {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .payment-btn {
+                width: 100%;
+            }
+
+            .social-btn {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                padding: 16px 20px;
+            }
+
+            .social-btn i {
+                font-size: 24px;
+            }
+            
+            .section-title {
+                font-size: 18px;
+            }
         }
-        
-        @keyframes orangeGlow {
-            0% { box-shadow: 0 0 10px rgba(255, 102, 0, 0.5); }
-            50% { box-shadow: 0 0 25px rgba(255, 102, 0, 0.8); }
-            100% { box-shadow: 0 0 10px rgba(255, 102, 0, 0.5); }
+
+        /* Extra small screens */
+        @media (max-width: 360px) {
+            .card-body {
+                padding: 20px 15px;
+            }
+
+            .phone-number, .payment-value {
+                font-size: 16px;
+            }
+
+            .email-address {
+                font-size: 15px;
+            }
         }
-        
-        .mobile-money-item {
-            animation: orangeGlow 3s infinite;
-        }
-        
-        .vodafone-money-item {
-            animation: orangeGlow 3s infinite;
-        }
-        
-        @keyframes facebookGlow {
-            0% { box-shadow: 0 0 10px rgba(24, 119, 242, 0.5); }
-            50% { box-shadow: 0 0 25px rgba(24, 119, 242, 0.8); }
-            100% { box-shadow: 0 0 10px rgba(24, 119, 242, 0.5); }
-        }
-        
-        .facebook-btn {
-            animation: facebookGlow 3s infinite;
-        }
-        
-        @keyframes telegramGlow {
-            0% { box-shadow: 0 0 10px rgba(0, 136, 204, 0.5); }
-            50% { box-shadow: 0 0 25px rgba(0, 136, 204, 0.8); }
-            100% { box-shadow: 0 0 10px rgba(0, 136, 204, 0.5); }
-        }
-        
-        .telegram-btn {
-            animation: telegramGlow 3s infinite;
+
+        /* Print styles */
+        @media print {
+            body {
+                background: white;
+            }
+            .business-card {
+                box-shadow: none;
+            }
+            .quick-actions, .social-btn {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="business-card">
-        <div class="card-header">
-            <div class="profile-container">
-                <div class="profile-frame">
-                    <img id="profileImage" class="profile-image" 
-                         src="https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg" 
-                         alt="Alber Samir">
-                    <div id="defaultAvatar" class="default-avatar">👤</div>
+    <div class="bg-shapes"></div>
+    
+    <div class="container">
+        <div class="business-card">
+            <div class="card-header">
+                <div class="profile-container">
+                    <div class="profile-frame">
+                        <img id="profileImage" class="profile-image" 
+                             src="https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg" 
+                             alt="Alber Samir">
+                        <div id="defaultAvatar" class="default-avatar">👤</div>
+                        <div class="status-badge" title="Available for work"></div>
+                    </div>
+                </div>
+                
+                <h1 class="name">Alber Samir</h1>
+                <p class="title">IT Specialist | Data Entry Operator | Computer Software Technician</p>
+                
+                <div class="profession-badges">
+                    <div class="badge">IT Professional</div>
+                    <div class="badge">Data Entry</div>
+                    <div class="badge">Software Technician</div>
                 </div>
             </div>
             
-            <h1 class="name">Alber Samir</h1>
-            <p class="title">IT Specialist | Data Entry Operator | Computer Software Technician</p>
-            
-            <div class="profession-badges">
-                <div class="badge">IT Professional</div>
-                <div class="badge">Data Entry</div>
-                <div class="badge">Software Technician</div>
-            </div>
-        </div>
-        
-        <div class="card-body">
-            <!-- Phone Numbers -->
-            <div class="section-title">
-                <span>📱</span>
-                <span>Contact Numbers</span>
-            </div>
-            
-            <div class="contact-grid">
-                <!-- Egypt Number 1 -->
-                <div class="contact-item">
-                    <div class="contact-icon icon-whatsapp">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <div class="contact-details">
-                        <div class="contact-type">Primary Number (Egypt)</div>
-                        <div class="phone-number">
-                            +20 127 627 2065
-                            <span class="country-flag">🇪🇬</span>
+            <div class="card-body">
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <button class="quick-action-btn save-contact-btn" onclick="saveContact()">
+                        <i class="fas fa-address-card"></i>
+                        <span>حفظ جهة الاتصال</span>
+                    </button>
+                    <button class="quick-action-btn share-btn" onclick="shareCard()">
+                        <i class="fas fa-share-alt"></i>
+                        <span>مشاركة</span>
+                    </button>
+                    <button class="quick-action-btn qr-btn" onclick="showQR()">
+                        <i class="fas fa-qrcode"></i>
+                        <span>QR Code</span>
+                    </button>
+                </div>
+                
+                <!-- Phone Numbers -->
+                <div class="section-title">
+                    <i class="fas fa-phone-alt"></i>
+                    <span>أرقام التواصل</span>
+                </div>
+                
+                <div class="contact-grid">
+                    <!-- Egypt Number 1 -->
+                    <div class="contact-item fade-in-up" style="animation-delay: 0.1s">
+                        <div class="contact-icon icon-whatsapp">
+                            <i class="fab fa-whatsapp"></i>
                         </div>
-                        <div class="contact-buttons">
-                            <a href="https://wa.me/201276272065" class="contact-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </a>
-                            <a href="tel:+201276272065" class="contact-btn call-btn">
-                                <i class="fas fa-phone"></i>
-                                Call
-                            </a>
+                        <div class="contact-details">
+                            <div class="contact-type">رقم مصر الرئيسي 🇪🇬</div>
+                            <div class="phone-number" onclick="copyToClipboard('+20 127 627 2065', 'phone')">
+                                <span class="number-text">+20 127 627 2065</span>
+                                <span class="copy-hint">اضغط للنسخ</span>
+                                <div class="copy-icon">
+                                    <i class="fas fa-copy"></i>
+                                </div>
+                            </div>
+                            <div class="contact-buttons">
+                                <a href="https://wa.me/201276272065" class="contact-btn whatsapp-btn">
+                                    <i class="fab fa-whatsapp"></i>
+                                    واتساب
+                                </a>
+                                <a href="tel:+201276272065" class="contact-btn call-btn">
+                                    <i class="fas fa-phone"></i>
+                                    اتصال
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Egypt Number 2 -->
+                    <div class="contact-item fade-in-up" style="animation-delay: 0.2s">
+                        <div class="contact-icon icon-whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-details">
+                            <div class="contact-type">رقم مصر ثانوي 🇪🇬</div>
+                            <div class="phone-number" onclick="copyToClipboard('+20 106 078 2884', 'phone')">
+                                <span class="number-text">+20 106 078 2884</span>
+                                <span class="copy-hint">اضغط للنسخ</span>
+                                <div class="copy-icon">
+                                    <i class="fas fa-copy"></i>
+                                </div>
+                            </div>
+                            <div class="contact-buttons">
+                                <a href="https://wa.me/201060782884" class="contact-btn whatsapp-btn">
+                                    <i class="fab fa-whatsapp"></i>
+                                    واتساب
+                                </a>
+                                <a href="tel:+201060782884" class="contact-btn call-btn">
+                                    <i class="fas fa-phone"></i>
+                                    اتصال
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- UAE Number -->
+                    <div class="contact-item fade-in-up" style="animation-delay: 0.3s">
+                        <div class="contact-icon icon-whatsapp">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="contact-details">
+                            <div class="contact-type">رقم الإمارات 🇦🇪</div>
+                            <div class="phone-number" onclick="copyToClipboard('+971 58 840 5335', 'phone')">
+                                <span class="number-text">+971 58 840 5335</span>
+                                <span class="copy-hint">اضغط للنسخ</span>
+                                <div class="copy-icon">
+                                    <i class="fas fa-copy"></i>
+                                </div>
+                            </div>
+                            <div class="contact-buttons">
+                                <a href="https://wa.me/971588405335" class="contact-btn whatsapp-btn">
+                                    <i class="fab fa-whatsapp"></i>
+                                    واتساب
+                                </a>
+                                <a href="tel:+971588405335" class="contact-btn call-btn">
+                                    <i class="fas fa-phone"></i>
+                                    اتصال
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Egypt Number 2 -->
-                <div class="contact-item">
-                    <div class="contact-icon icon-whatsapp">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <div class="contact-details">
-                        <div class="contact-type">Secondary Number (Egypt)</div>
-                        <div class="phone-number">
-                            +20 106 078 2884
-                            <span class="country-flag">🇪🇬</span>
-                        </div>
-                        <div class="contact-buttons">
-                            <a href="https://wa.me/201060782884" class="contact-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </a>
-                            <a href="tel:+201060782884" class="contact-btn call-btn">
-                                <i class="fas fa-phone"></i>
-                                Call
-                            </a>
-                        </div>
-                    </div>
+                <!-- Email -->
+                <div class="section-title">
+                    <i class="fas fa-envelope"></i>
+                    <span>البريد الإلكتروني</span>
                 </div>
                 
-                <!-- UAE Number -->
-                <div class="contact-item">
-                    <div class="contact-icon icon-whatsapp">
-                        <i class="fab fa-whatsapp"></i>
-                    </div>
-                    <div class="contact-details">
-                        <div class="contact-type">UAE Number</div>
-                        <div class="phone-number">
-                            +971 58 840 5335
-                            <span class="country-flag">🇦🇪</span>
+                <div class="contact-item email-item fade-in-up" style="animation-delay: 0.4s">
+                    <div class="email-content">
+                        <div class="email-icon-wrapper">
+                            <div class="contact-icon icon-email">
+                                <i class="fas fa-envelope"></i>
+                            </div>
                         </div>
-                        <div class="contact-buttons">
-                            <a href="https://wa.me/971588405335" class="contact-btn whatsapp-btn">
-                                <i class="fab fa-whatsapp"></i>
-                                WhatsApp
-                            </a>
-                            <a href="tel:+971588405335" class="contact-btn call-btn">
-                                <i class="fas fa-phone"></i>
-                                Call
-                            </a>
+                        <div class="email-details">
+                            <div class="contact-type">البريد الرسمي</div>
+                            <div class="email-address" onclick="copyToClipboard('albersamir2@gmail.com', 'email')"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="67060b05021514060a0e155527000a060e0b4904080a">[email&#160;protected]</a></div>
                         </div>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Email -->
-            <div class="section-title">
-                <span>✉️</span>
-                <span>Email</span>
-            </div>
-            
-            <div class="contact-item email-item">
-                <div class="email-content">
-                    <div class="email-icon-wrapper">
-                        <div class="contact-icon icon-email">
+                    <div class="email-btn-container">
+                        <a href="/cdn-cgi/l/email-protection#13727f71766160727e7a612153747e727a7f3d707c7e" class="email-btn">
                             <i class="fas fa-envelope"></i>
+                            إرسال رسالة
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Payment Methods -->
+                <div class="section-title">
+                    <i class="fas fa-wallet"></i>
+                    <span>طرق الدفع الإلكتروني</span>
+                </div>
+                
+                <div class="payment-section">
+                    <!-- Orange Cash -->
+                    <div class="payment-card fade-in-up" style="animation-delay: 0.5s" onclick="copyToClipboard('+20 127 627 2065', 'payment')">
+                        <div class="payment-icon orange"></div>
+                        <div class="payment-details">
+                            <div class="payment-type">Orange Cash (مصر)</div>
+                            <div class="payment-value-box">
+                                <div>
+                                    <div class="payment-value-label">أرسل إلى:</div>
+                                    <div class="payment-value">+20 127 627 2065</div>
+                                </div>
+                                <div class="copy-icon-small">
+                                    <i class="fas fa-copy"></i>
+                                </div>
+                            </div>
+                            <a href="tel:*700*1*1*1*01276272065#" class="payment-btn">
+                                <i class="fas fa-money-bill-wave"></i>
+                                دفع عبر Orange Cash
+                            </a>
                         </div>
                     </div>
-                    <div class="email-details">
-                        <div class="contact-type">Official Email</div>
-                        <div class="email-address">albersamir2@gmail.com</div>
-                    </div>
-                </div>
-                <div class="email-btn-container">
-                    <a href="mailto:albersamir2@gmail.com" class="email-btn">
-                        <i class="fas fa-envelope"></i>
-                        Send Email
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Orange Cash -->
-            <div class="section-title">
-                <span>💰</span>
-                <span>Mobile Money Payments</span>
-            </div>
-            
-            <!-- Orange Cash -->
-            <div class="mobile-money-item">
-                <div class="contact-icon orange-cash-icon">
-                    <!-- Orange Cash icon will appear from CSS -->
-                </div>
-                <div class="mobile-money-details">
-                    <div class="mobile-money-type">Orange Cash (Egypt)</div>
                     
-                    <div class="mobile-number-box">
-                        <div class="mobile-number-label">Send payment to:</div>
-                        <div class="mobile-number">+20 127 627 2065</div>
+                    <!-- Vodafone Cash -->
+                    <div class="payment-card vodafone fade-in-up" style="animation-delay: 0.6s" onclick="copyToClipboard('+20 106 078 2884', 'payment')">
+                        <div class="payment-icon vodafone"></div>
+                        <div class="payment-details">
+                            <div class="payment-type">Vodafone Cash (مصر)</div>
+                            <div class="payment-value-box">
+                                <div>
+                                    <div class="payment-value-label">أرسل إلى:</div>
+                                    <div class="payment-value">+20 106 078 2884</div>
+                                </div>
+                                <div class="copy-icon-small">
+                                    <i class="fas fa-copy"></i>
+                                </div>
+                            </div>
+                            <a href="tel:*9*7*01060782884#" class="payment-btn">
+                                <i class="fas fa-money-bill-wave"></i>
+                                دفع عبر Vodafone Cash
+                            </a>
+                        </div>
                     </div>
                     
-                    <!-- زر Orange Cash الوحيد -->
-                    <a href="tel:%237115%2A1%2A1%2A1%2A01276272065%23" class="orange-action-btn">
-                        <i class="fas fa-money-bill-wave"></i>
-                        Send via Orange Cash
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Vodafone Cash -->
-            <div class="mobile-money-item vodafone-money-item">
-                <div class="contact-icon vodafone-cash-icon">
-                    <!-- Vodafone Cash icon will appear from CSS -->
-                </div>
-                <div class="mobile-money-details">
-                    <div class="mobile-money-type">Vodafone Cash (Egypt)</div>
-                    
-                    <div class="mobile-number-box vodafone-number-box">
-                        <div class="mobile-number-label vodafone-number-label">Send payment to:</div>
-                        <div class="mobile-number vodafone-number">+20 106 078 2884</div>
+                    <!-- Instapay -->
+                    <div class="payment-card instapay fade-in-up" style="animation-delay: 0.7s" onclick="copyToClipboard('elqiser2@instapay', 'payment')">
+                        <div class="payment-icon instapay"></div>
+                        <div class="payment-details">
+                            <div class="payment-type">Instapay (مصر)</div>
+                            <div class="payment-value-box">
+                                <div>
+                                    <div class="payment-value-label">اسم المستخدم:</div>
+                                    <div class="payment-value">elqiser2@instapay</div>
+                                </div>
+                                <div class="copy-icon-small">
+                                    <i class="fas fa-copy"></i>
+                                </div>
+                            </div>
+                            <a href="https://ipn.eg/S/elqiser2/instapay/2uNC60" class="payment-btn">
+                                <i class="fas fa-external-link-alt"></i>
+                                فتح تطبيق Instapay
+                            </a>
+                        </div>
                     </div>
-                    
-                    <!-- رابط Vodafone Cash المشفر -->
-                    <a href="tel:*%239*7*01060782884%23" class="mobile-money-btn vodafone-money-btn">
-                        <i class="fas fa-money-bill-wave"></i>
-                        Send via Vodafone Cash
-                    </a>
                 </div>
-            </div>
-            
-            <!-- Instapay -->
-            <div class="section-title">
-                <span>💳</span>
-                <span>Quick Payment via Instapay</span>
-            </div>
-            
-            <div class="instapay-item">
-                <div class="contact-icon instapay-icon">
-                    <!-- Icon will appear from CSS -->
-                </div>
-                <div class="instapay-details">
-                    <div class="instapay-type">Instapay Username</div>
-                    
-                    <div class="instapay-username-box">
-                        <div class="instapay-username-label">Send payment to:</div>
-                        <div class="instapay-username">elqiser2@instapay</div>
-                    </div>
-                    
-                    <!-- Direct link to Instapay -->
-                    <a href="https://ipn.eg/S/elqiser2/instapay/2uNC60" class="instapay-btn">
-                        Open Instapay App
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Social Media -->
-            <div class="section-title">
-                <span>🌐</span>
-                <span>Social Media</span>
-            </div>
-            
-            <div class="social-section">
-                <a href="https://www.facebook.com/ellqiser" class="social-btn facebook-btn">
-                    <i class="fab fa-facebook-square"></i>
-                    <span>Visit Facebook Profile</span>
-                </a>
                 
-                <!-- Telegram Button - Updated for personal account -->
-                <a href="https://t.me/ELQISEER" class="social-btn telegram-btn">
-                    <i class="fab fa-telegram"></i>
-                    <span>Message on Telegram</span>
-                </a>
+                <!-- Social Media -->
+                <div class="section-title">
+                    <i class="fas fa-globe"></i>
+                    <span>وسائل التواصل الاجتماعي</span>
+                </div>
+                
+                <div class="social-section">
+                    <a href="https://www.facebook.com/ellqiser" class="social-btn facebook-btn fade-in-up" style="animation-delay: 0.8s">
+                        <i class="fab fa-facebook-square"></i>
+                        <span>صفحة فيسبوك</span>
+                    </a>
+                    
+                    <a href="https://t.me/ELQISEER" class="social-btn telegram-btn fade-in-up" style="animation-delay: 0.9s">
+                        <i class="fab fa-telegram"></i>
+                        <span>تيليجرام</span>
+                    </a>
+                </div>
+
+                <!-- Footer with Social -->
+                <div class="card-footer fade-in-up" style="animation-delay: 1s">
+                    <div class="footer-social">
+                        <a href="https://wa.me/201276272065" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://t.me/ELQISEER" title="Telegram"><i class="fab fa-telegram"></i></a>
+                        <a href="https://www.facebook.com/ellqiser" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="/cdn-cgi/l/email-protection#f3929f91968180929e9a81c1b3949e929a9fdd909c9e" title="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                    <p>Digital Business Card - Alber Samir © 2025</p>
+                </div>
             </div>
         </div>
-        
-        <div class="card-footer">
-            <p>Digital Business Card</p>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i class="fas fa-check-circle"></i>
+        <span id="toastMessage">تم النسخ بنجاح!</span>
+    </div>
+
+    <!-- QR Modal -->
+    <div id="qrModal" class="modal-overlay" onclick="closeQR(event)">
+        <div class="modal-content" style="position: relative;">
+            <button class="modal-close" onclick="hideQR()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h3>QR Code - Alber Samir</h3>
+            </div>
+            <div class="qr-container">
+                <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://raw.githubusercontent.com/elqiser00/Card/main/index.html" alt="QR Code">
+            </div>
+            <p class="qr-hint">امسح الكود لحفظ البطاقة</p>
         </div>
     </div>
     
-    <script>
-        // Your image link on GitHub
-        const githubImageUrl = 'https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg';
-        
-        // DOM elements
-        const profileImage = document.getElementById('profileImage');
-        const defaultAvatar = document.getElementById('defaultAvatar');
-        
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+        // Configuration
+        const config = {
+            name: 'Alber Samir',
+            title: 'IT Specialist | Data Entry Operator | Computer Software Technician',
+            phones: [
+                { label: 'Primary (Egypt)', number: '+20 127 627 2065', country: '🇪🇬' },
+                { label: 'Secondary (Egypt)', number: '+20 106 078 2884', country: '🇪🇬' },
+                { label: 'UAE', number: '+971 58 840 5335', country: '🇦🇪' }
+            ],
+            email: 'albersamir2@gmail.com',
+            website: 'https://raw.githubusercontent.com/elqiser00/Card/main/index.html',
+            social: {
+                facebook: 'https://www.facebook.com/ellqiser',
+                telegram: 'https://t.me/ELQISEER'
+            }
+        };
+
         // Load image when page opens
         window.addEventListener('load', () => {
-            // Use GitHub image with timestamp to prevent caching
+            const profileImage = document.getElementById('profileImage');
+            const defaultAvatar = document.getElementById('defaultAvatar');
+            const githubImageUrl = 'https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg';
+            
             profileImage.src = githubImageUrl + '?t=' + new Date().getTime();
             
-            // Check if image loaded successfully
             profileImage.onload = function() {
                 profileImage.style.display = 'block';
                 defaultAvatar.style.display = 'none';
@@ -1159,34 +1518,173 @@
                 defaultAvatar.style.display = 'block';
             };
         });
-        
+
+        // Copy to clipboard function
+        async function copyToClipboard(text, type) {
+            try {
+                await navigator.clipboard.writeText(text);
+                let message = '';
+                
+                switch(type) {
+                    case 'phone':
+                        message = 'تم نسخ الرقم بنجاح! 📱';
+                        break;
+                    case 'email':
+                        message = 'تم نسخ البريد الإلكتروني! 📧';
+                        break;
+                    case 'payment':
+                        message = 'تم نسخ البيانات بنجاح! 💰';
+                        break;
+                    default:
+                        message = 'تم النسخ بنجاح! ✅';
+                }
+                
+                showToast(message, 'success');
+                
+                // Haptic feedback if available
+                if (navigator.vibrate) {
+                    navigator.vibrate(50);
+                }
+                
+            } catch (err) {
+                // Fallback for older browsers
+                const textArea = document.createElement('textarea');
+                textArea.value = text;
+                textArea.style.position = 'fixed';
+                textArea.style.left = '-999999px';
+                textArea.style.top = '-999999px';
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                
+                try {
+                    document.execCommand('copy');
+                    showToast('تم النسخ بنجاح! ✅', 'success');
+                } catch (e) {
+                    showToast('حدث خطأ أثناء النسخ ❌', 'error');
+                }
+                
+                document.body.removeChild(textArea);
+            }
+        }
+
+        // Show toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            
+            toast.className = 'toast' + (type === 'error' ? ' error' : '');
+            toastMessage.textContent = message;
+            
+            // Show toast
+            setTimeout(() => toast.classList.add('show'), 10);
+            
+            // Hide after 3 seconds
+            setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // Generate vCard data
+        function generateVCard() {
+            let vCard = 'BEGIN:VCARD\n';
+            vCard += 'VERSION:3.0\n';
+            vCard += `FN:${config.name}\n`;
+            vCard += `N:${config.name.split(' ').reverse().join(';')};;;\n`;
+            vCard += `TITLE:${config.title}\n`;
+            vCard += `ORG:Alber Samir IT Services\n`;
+            
+            // Add phones
+            config.phones.forEach((phone, index) => {
+                const type = index === 0 ? 'CELL' : 'WORK,CELL';
+                vCard += `TEL;TYPE=${type}:${phone.number}\n`;
+            });
+            
+            vCard += `EMAIL:${config.email}\n`;
+            vCard += `URL:${config.website}\n`;
+            vCard += 'END:VCARD';
+            
+            return vCard;
+        }
+
+        // Save contact function
+        function saveContact() {
+            const vCardData = generateVCard();
+            const blob = new Blob([vCardData], { type: 'text/vcard' });
+            const url = URL.createObjectURL(blob);
+            
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `${config.name.replace(' ', '_')}_Contact.vcf`;
+            link.click();
+            
+            URL.revokeObjectURL(url);
+            showToast('جاري تحميل جهة الاتصال... 📥', 'success');
+        }
+
+        // Share card function
+        async function shareCard() {
+            const shareData = {
+                title: `بطاقة أعمال - ${config.name}`,
+                text: `${config.name}\n${config.title}\n\nتواصلوا معي عبر:`,
+                url: config.website
+            };
+
+            // Check if Web Share API is supported
+            if (navigator.share && navigator.canShare(shareData)) {
+                try {
+                    await navigator.share(shareData);
+                    showToast('تم المشاركة بنجاح! 📤', 'success');
+                } catch (err) {
+                    if (err.name !== 'AbortError') {
+                        copyShareLink();
+                    }
+                }
+            } else {
+                copyShareLink();
+            }
+        }
+
+        // Copy share link
+        function copyShareLink() {
+            const shareUrl = config.website;
+            navigator.clipboard.writeText(shareUrl).then(() => {
+                showToast('تم نسخ رابط البطاقة! 🔗', 'success');
+            }).catch(() => {
+                showToast('اضغط لنسخ الرابط 📋', 'success');
+                window.prompt('انسخ هذا الرابط:', shareUrl);
+            });
+        }
+
+        // QR Code functions
+        function showQR() {
+            const modal = document.getElementById('qrModal');
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideQR() {
+            const modal = document.getElementById('qrModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+
+        function closeQR(event) {
+            if (event.target === event.currentTarget) {
+                hideQR();
+            }
+        }
+
+        // Close modal on escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                hideQR();
+            }
+        });
+
         // Track visits
         let visits = localStorage.getItem('alber_visits') || 0;
         visits = parseInt(visits) + 1;
         localStorage.setItem('alber_visits', visits);
-        
-        // Effects on load
-        setTimeout(() => {
-            document.querySelectorAll('.contact-item').forEach((item, index) => {
-                setTimeout(() => {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(20px)';
-                    item.style.animation = 'fadeInUp 0.5s ease forwards';
-                    item.style.animationDelay = (index * 0.1) + 's';
-                }, 100);
-            });
-            
-            setTimeout(() => {
-                const mobileMoneyItems = document.querySelectorAll('.mobile-money-item, .instapay-item');
-                mobileMoneyItems.forEach((item, index) => {
-                    item.style.opacity = '0';
-                    item.style.transform = 'translateY(20px)';
-                    item.style.animation = 'fadeInUp 0.5s ease forwards';
-                    item.style.animationDelay = (index * 0.2) + 's';
-                });
-            }, 100);
-        }, 500);
-        
+
         // Save visit data
         const visitData = {
             lastVisit: new Date().toISOString(),
@@ -1194,6 +1692,45 @@
             userAgent: navigator.userAgent
         };
         localStorage.setItem('alber_visit_data', JSON.stringify(visitData));
+
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.fade-in-up').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease forwards';
+            observer.observe(el);
+        });
+
+        // Preload critical images
+        const preloadImages = [
+            'https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg'
+        ];
+        
+        preloadImages.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
+
+        // Service Worker registration for offline support (PWA)
+        if ('serviceWorker' in navigator) {
+            // Service worker can be added for full PWA support
+            console.log('PWA support available');
+        }
     </script>
 </body>
 </html>
