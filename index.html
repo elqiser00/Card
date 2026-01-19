@@ -7,7 +7,6 @@
     <title>Alber Samir - IT Specialist</title>
     <script type="text/javascript" nonce="716b1c5f977c47db9fad71395df" src="//local.adguard.org?ts=1768864608240&amp;type=content-script&amp;dmn=agent.minimax.io&amp;url=https%3A%2F%2Fagent.minimax.io%2Fmatrix%2Fapi%2Fv1%2Fstorage%2Fobject%2Fchat%2F357611784753499%2Fwebsite.html&amp;app=chrome.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1&amp;stealth=1&amp;st-loc&amp;st-dnt"></script><script type="text/javascript" nonce="716b1c5f977c47db9fad71395df" src="//local.adguard.org?ts=1768864608240&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;name=Web%20of%20Trust&amp;type=user-script"></script><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
         /* Base CSS Variables */
         :root {
@@ -1287,7 +1286,7 @@
                         </div>
                         <div class="info-item">
                             <i class="fas fa-envelope"></i>
-                            <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0f6e636d6a7d7c6e62667d3d4f68626e6663216c6062">[email&#160;protected]</a></span>
+                            <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bddcd1dfd8cfcedcd0d4cf8ffddad0dcd4d193ded2d0">[email&#160;protected]</a></span>
                         </div>
                         <div class="info-item">
                             <i class="fas fa-phone"></i>
@@ -1500,7 +1499,7 @@
                             </div>
                             <div class="contact-method-info">
                                 <h4 data-i18n="email">Email</h4>
-                                <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="47262b25223534262a2e357507202a262e2b6924282a">[email&#160;protected]</a></p>
+                                <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c6a7aaa4a3b4b5a7abafb4f486a1aba7afaae8a5a9ab">[email&#160;protected]</a></p>
                             </div>
                         </div>
                         <div class="contact-method" onclick="openLink('https://t.me/ELQISEER')">
@@ -1554,7 +1553,7 @@
                         <a href="https://wa.me/201276272065" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                         <a href="https://www.facebook.com/ellqiser" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://t.me/ELQISEER" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
-                        <a href="/cdn-cgi/l/email-protection#5b3a37393e29283a363229691b3c363a323775383436" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="/cdn-cgi/l/email-protection#1879747a7d6a6b7975716a2a587f75797174367b7775" title="Email"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
             </div>
@@ -1572,7 +1571,7 @@
                         <a href="https://wa.me/201276272065" target="_blank"><i class="fab fa-whatsapp"></i></a>
                         <a href="https://www.facebook.com/ellqiser" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://t.me/ELQISEER" target="_blank"><i class="fab fa-telegram"></i></a>
-                        <a href="/cdn-cgi/l/email-protection#a3c2cfc1c6d1d0c2cecad191e3c4cec2cacf8dc0ccce"><i class="fas fa-envelope"></i></a>
+                        <a href="/cdn-cgi/l/email-protection#8beae7e9eef9f8eae6e2f9b9cbece6eae2e7a5e8e4e6"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
@@ -1597,7 +1596,7 @@
                     <h4 data-i18n="footer_contact">Contact</h4>
                     <ul>
                         <li><a href="tel:+201276272065">+20 127 627 2065</a></li>
-                        <li><a href="/cdn-cgi/l/email-protection#d3b2bfb1b6a1a0b2bebaa1e193b4beb2babffdb0bcbe"><span class="__cf_email__" data-cfemail="32535e50574041535f5b400072555f535b5e1c515d5f">[email&#160;protected]</span></a></li>
+                        <li><a href="/cdn-cgi/l/email-protection#e0818c82859293818d8992d2a0878d81898cce838f8d"><span class="__cf_email__" data-cfemail="9cfdf0fef9eeeffdf1f5eeaedcfbf1fdf5f0b2fff3f1">[email&#160;protected]</span></a></li>
                         <li><a href="#" data-i18n="location">Egypt & UAE</a></li>
                     </ul>
                 </div>
@@ -1884,14 +1883,9 @@
             
             const vCardData = generateVCardData();
             
-            new QRCode(qrContainer, {
-                text: vCardData,
-                width: 200,
-                height: 200,
-                colorDark: "#000000",
-                colorLight: "#ffffff",
-                correctLevel: QRCode.CorrectLevel.M
-            });
+            const encodedData = encodeURIComponent(vCardData);
+            const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodedData}`;
+            qrContainer.innerHTML = `<img src="${qrUrl}" alt="QR Code" style="border-radius: 12px; padding: 10px; background: white;">`;
 
             document.getElementById('qrUrl').textContent = window.location.href;
             document.getElementById('qrModal').classList.add('show');
