@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Alber Samir - IT Specialist | Computer Software Technician | Data Entry Operator">
     <title>Alber Samir - IT Specialist</title>
-    <script type="text/javascript" nonce="716b1c5f977c47db9fad71395df" src="//local.adguard.org?ts=1768864608240&amp;type=content-script&amp;dmn=agent.minimax.io&amp;url=https%3A%2F%2Fagent.minimax.io%2Fmatrix%2Fapi%2Fv1%2Fstorage%2Fobject%2Fchat%2F357611784753499%2Fwebsite.html&amp;app=chrome.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1&amp;stealth=1&amp;st-loc&amp;st-dnt"></script><script type="text/javascript" nonce="716b1c5f977c47db9fad71395df" src="//local.adguard.org?ts=1768864608240&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;name=Web%20of%20Trust&amp;type=user-script"></script><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script type="text/javascript" nonce="716b1c5f977c47db9fad71395df" src="//local.adguard.org?ts=1768868207723&amp;type=content-script&amp;dmn=agent.minimax.io&amp;url=https%3A%2F%2Fagent.minimax.io%2Fmatrix%2Fapi%2Fv1%2Fstorage%2Fobject%2Fchat%2F357611784753499%2Fwebsite.html&amp;app=chrome.exe&amp;css=3&amp;js=1&amp;rel=1&amp;rji=1&amp;sbe=1&amp;stealth=1&amp;st-loc&amp;st-dnt"></script><script type="text/javascript" nonce="716b1c5f977c47db9fad71395df" src="//local.adguard.org?ts=1768868207723&amp;name=AdGuard%20Assistant&amp;name=AdGuard%20Extra&amp;name=AdGuard%20Popup%20Blocker&amp;name=Web%20of%20Trust&amp;type=user-script"></script><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         /* Base CSS Variables */
@@ -168,6 +168,16 @@
             justify-content: center;
             font-size: 16px;
             transition: var(--transition);
+        }
+        
+        .lang-toggle {
+            width: auto;
+            padding: 0 16px;
+            border-radius: 25px;
+        }
+        
+        .lang-toggle span {
+            white-space: nowrap;
         }
 
         .theme-toggle:hover, .lang-toggle:hover {
@@ -1126,6 +1136,11 @@
                 height: 38px;
                 font-size: 14px;
             }
+            
+            .lang-toggle {
+                width: auto;
+                padding: 0 12px;
+            }
 
             .mobile-menu {
                 display: block;
@@ -1198,7 +1213,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <a href="#" class="logo">Alber<span>.</span></a>
+            <a href="#" class="logo" data-i18n="logo_name">Alber<span>.</span></a>
             <div class="nav-links">
                 <a href="#home" data-i18n="nav_home">Home</a>
                 <a href="#about" data-i18n="nav_about">About</a>
@@ -1282,15 +1297,15 @@
                     <div class="about-info">
                         <div class="info-item">
                             <i class="fas fa-user"></i>
-                            <span>Alber Samir</span>
+                            <span data-i18n="my_name">Alber Samir</span>
                         </div>
                         <div class="info-item">
                             <i class="fas fa-envelope"></i>
-                            <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bddcd1dfd8cfcedcd0d4cf8ffddad0dcd4d193ded2d0">[email&#160;protected]</a></span>
+                            <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="52333e30372021333f3b206012353f333b3e7c313d3f">[email&#160;protected]</a></span>
                         </div>
                         <div class="info-item">
                             <i class="fas fa-phone"></i>
-                            <span>+20 127 627 2065</span>
+                            <span dir="ltr">+20 127 627 2065</span>
                         </div>
                         <div class="info-item">
                             <i class="fas fa-map-marker-alt"></i>
@@ -1384,16 +1399,16 @@
                         <div class="payment-icon">
                             <i class="fas fa-wallet"></i>
                         </div>
-                        <div class="payment-name">Orange Cash</div>
-                        <div class="payment-country">Egypt</div>
+                        <div class="payment-name" data-i18n="orange_cash">Orange Cash</div>
+                        <div class="payment-country" data-i18n="egypt">Egypt</div>
                     </div>
                     <div class="payment-card-body">
                         <div class="payment-value">
                             <span class="label" data-i18n="send_to">Send to:</span>
-                            <span class="number">+20 127 627 2065</span>
+                            <span class="number" dir="ltr">+20 127 627 2065</span>
                         </div>
                         <div class="payment-actions">
-                            <a href="tel:%237115%2A1%2A1%2A1%2A01276272065#" class="payment-btn">
+                            <a href="tel:*%237115%2A1%2A1%2A1%2A01276272065%23" class="payment-btn">
                                 <i class="fas fa-phone-alt"></i>
                                 <span data-i18n="open_app">Open App</span>
                             </a>
@@ -1408,13 +1423,13 @@
                         <div class="payment-icon">
                             <i class="fas fa-wallet"></i>
                         </div>
-                        <div class="payment-name">Vodafone Cash</div>
-                        <div class="payment-country">Egypt</div>
+                        <div class="payment-name" data-i18n="vodafone_cash">Vodafone Cash</div>
+                        <div class="payment-country" data-i18n="egypt">Egypt</div>
                     </div>
                     <div class="payment-card-body">
                         <div class="payment-value">
                             <span class="label" data-i18n="send_to">Send to:</span>
-                            <span class="number">+20 106 078 2884</span>
+                            <span class="number" dir="ltr">+20 106 078 2884</span>
                         </div>
                         <div class="payment-actions">
                             <a href="tel:*%239*7*01060782884%23" class="payment-btn vodafone">
@@ -1432,8 +1447,8 @@
                         <div class="payment-icon">
                             <i class="fas fa-credit-card"></i>
                         </div>
-                        <div class="payment-name">Instapay</div>
-                        <div class="payment-country">Egypt</div>
+                        <div class="payment-name" data-i18n="instapay">Instapay</div>
+                        <div class="payment-country" data-i18n="egypt">Egypt</div>
                     </div>
                     <div class="payment-card-body">
                         <div class="payment-value">
@@ -1499,7 +1514,7 @@
                             </div>
                             <div class="contact-method-info">
                                 <h4 data-i18n="email">Email</h4>
-                                <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c6a7aaa4a3b4b5a7abafb4f486a1aba7afaae8a5a9ab">[email&#160;protected]</a></p>
+                                <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="7a1b16181f08091b171308483a1d171b131654191517">[email&#160;protected]</a></p>
                             </div>
                         </div>
                         <div class="contact-method" onclick="openLink('https://t.me/ELQISEER')">
@@ -1518,7 +1533,7 @@
                 <div class="business-card">
                     <div class="card-profile">
                         <img src="https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg" alt="Alber Samir" class="card-avatar" onerror="this.style.display='none'">
-                        <h3>Alber Samir</h3>
+                        <h3 data-i18n="profile_name">Alber Samir</h3>
                         <p data-i18n="job_title">IT Specialist</p>
                     </div>
                     
@@ -1553,7 +1568,7 @@
                         <a href="https://wa.me/201276272065" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                         <a href="https://www.facebook.com/ellqiser" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://t.me/ELQISEER" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
-                        <a href="/cdn-cgi/l/email-protection#1879747a7d6a6b7975716a2a587f75797174367b7775" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="/cdn-cgi/l/email-protection#95f4f9f7f0e7e6f4f8fce7a7d5f2f8f4fcf9bbf6faf8" title="Email"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
             </div>
@@ -1565,13 +1580,13 @@
         <div class="footer-container">
             <div class="footer-top">
                 <div class="footer-brand">
-                    <a href="#" class="logo">Alber<span>.</span></a>
+                    <a href="#" class="logo" data-i18n="logo_name">Alber<span>.</span></a>
                     <p data-i18n="footer_desc">Professional IT specialist offering comprehensive technical solutions and support services.</p>
                     <div class="footer-social">
                         <a href="https://wa.me/201276272065" target="_blank"><i class="fab fa-whatsapp"></i></a>
                         <a href="https://www.facebook.com/ellqiser" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://t.me/ELQISEER" target="_blank"><i class="fab fa-telegram"></i></a>
-                        <a href="/cdn-cgi/l/email-protection#8beae7e9eef9f8eae6e2f9b9cbece6eae2e7a5e8e4e6"><i class="fas fa-envelope"></i></a>
+                        <a href="/cdn-cgi/l/email-protection#2d4c414f485f5e4c40445f1f6d4a404c4441034e4240"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
@@ -1596,7 +1611,7 @@
                     <h4 data-i18n="footer_contact">Contact</h4>
                     <ul>
                         <li><a href="tel:+201276272065">+20 127 627 2065</a></li>
-                        <li><a href="/cdn-cgi/l/email-protection#e0818c82859293818d8992d2a0878d81898cce838f8d"><span class="__cf_email__" data-cfemail="9cfdf0fef9eeeffdf1f5eeaedcfbf1fdf5f0b2fff3f1">[email&#160;protected]</span></a></li>
+                        <li><a href="/cdn-cgi/l/email-protection#0c6d606e697e7f6d61657e3e4c6b616d6560226f6361"><span class="__cf_email__" data-cfemail="a4c5c8c6c1d6d7c5c9cdd696e4c3c9c5cdc88ac7cbc9">[email&#160;protected]</span></a></li>
                         <li><a href="#" data-i18n="location">Egypt & UAE</a></li>
                     </ul>
                 </div>
@@ -1682,6 +1697,10 @@
                 section_payments: "Payments",
                 payments_title: "Payment Methods",
                 payments_desc: "Easy and secure payment options for your convenience",
+                orange_cash: "Orange Cash",
+                vodafone_cash: "Vodafone Cash",
+                instapay: "Instapay",
+                egypt: "Egypt",
                 send_to: "Send to:",
                 open_app: "Open App",
                 tap_copy: "Tap to copy number",
@@ -1697,6 +1716,10 @@
                 whatsapp_vodafone: "WhatsApp (Vodafone)",
                 email: "Email",
                 telegram: "Telegram",
+                profile_name: "Alber Samir",
+                my_name: "Alber Samir",
+                logo_name: "Alber.",
+                page_title: "Alber Samir - IT Specialist",
                 job_title: "IT Specialist",
                 visits_label: "Total Visits",
                 btn_qr: "QR Code",
@@ -1728,8 +1751,8 @@
                 about_title: "اعرفني أكثر",
                 about_desc: "محترف شغوف بتكنولوجيا المعلومات ملتزم بتقديم حلول تقنية عالية الجودة",
                 exp_years: "سنوات الخبرة",
-                about_role: "متخصص IT وخبير إدخال بيانات",
-                about_text: "أنا محترف IT مكرس بخبرات واسعة في عمليات إدخال البيانات وصيانة البرمجيات والدعم التقني. التزامي بالجودة والكفاءة ساعد العديد من العملاء في تحقيق أهدافهم.",
+                about_role: "متخصص تكنولوجيا المعلومات وخبير إدخال بيانات",
+                about_text: "أنا محترف تكنولوجيا المعلومات مكرس بخبرات واسعة في عمليات إدخال البيانات وصيانة البرمجيات والدعم التقني. التزامي بالجودة والكفاءة ساعد العديد من العملاء في تحقيق أهدافهم.",
                 location: "مصر والإمارات",
                 available: "متاح للعمل الحر",
                 languages: "العربية والإنجليزية",
@@ -1752,6 +1775,10 @@
                 section_payments: "طرق الدفع",
                 payments_title: "طرق الدفع",
                 payments_desc: "خيارات دفع سهلة وآمنة لراحتك",
+                orange_cash: "أورانج كاش",
+                vodafone_cash: "فودافون كاش",
+                instapay: "إنستاباي",
+                egypt: "مصر",
                 send_to: "إرسال إلى:",
                 open_app: "افتح التطبيق",
                 tap_copy: "اضغط للنسخ",
@@ -1764,9 +1791,13 @@
                 discuss_desc: "لا تتردد في التواصل عبر أي من هذه القنوات. أنا دائماً متاح للاستشارات والاستفسارات.",
                 whatsapp_primary: "واتساب (مصر)",
                 whatsapp_secondary: "واتساب (الإمارات)",
-                whatsapp_vodafone: "واتساب (فودافون)",
+                whatsapp_vodafone: "واتساب (مصر)",
                 email: "البريد الإلكتروني",
                 telegram: "تيليجرام",
+                profile_name: "البير سمير",
+                my_name: "البير سمير",
+                logo_name: "البير.",
+                page_title_ar: "البير سمير - متخصص تقنية المعلومات",
                 job_title: "متخصص تكنولوجيا المعلومات",
                 visits_label: "إجمالي الزيارات",
                 btn_qr: "رمز QR",
@@ -1842,6 +1873,12 @@
 
             document.documentElement.lang = lang;
             document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            
+            // Update page title
+            const titleKey = lang === 'ar' ? 'page_title_ar' : 'page_title';
+            if (translations[lang][titleKey]) {
+                document.title = translations[lang][titleKey];
+            }
             
             // Update language button text
             const langBtn = document.querySelector('.lang-toggle span');
