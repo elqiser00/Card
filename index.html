@@ -1603,7 +1603,7 @@
                         <a href="https://wa.me/201276272065" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                         <a href="https://www.facebook.com/ellqiser" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://t.me/ELQISEER" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
-                        <a href="/cdn-cgi/l/email-protection#8fa9acb6b8b4a9acbebfb7b4a9acb6b7b4a9acbebfbeb4a9acbebebbb4a9acbebebab4a9acb6b8b4a9acbebfb6b4a9acbebfbab4a9acbebebbb4a9acbabfb4a9acb9bbb4a9acbebfbcb4a9acbebfb6b4a9acb6b8b4a9acbebfbab4a9acbebfb7b4a9acbbb9b4a9acb6b6b4a9acbebebeb4a9acbebfb6b4" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="/cdn-cgi/l/email-protection#3f191c060804191c0e0f0704191c060704191c0e0f0e04191c0e0e0b04191c0e0e0a04191c060804191c0e0f0604191c0e0f0a04191c0e0e0b04191c0a0f04191c090b04191c0e0f0c04191c0e0f0604191c060804191c0e0f0a04191c0e0f0704191c0b0904191c060604191c0e0e0e04191c0e0f0604" title="Email"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
             </div>
@@ -1621,7 +1621,7 @@
                         <a href="https://wa.me/201276272065" target="_blank"><i class="fab fa-whatsapp"></i></a>
                         <a href="https://www.facebook.com/ellqiser" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://t.me/ELQISEER" target="_blank"><i class="fab fa-telegram"></i></a>
-                        <a href="/cdn-cgi/l/email-protection#7452574d434f525745444c4f52574d4c4f52574544454f52574545404f52574545414f52574d434f525745444d4f52574544414f52574545404f525741444f525742404f52574544474f525745444d4f52574d434f52574544414f525745444c4f525740424f52574d4d4f52574545454f525745444d4f"><i class="fas fa-envelope"></i></a>
+                        <a href="/cdn-cgi/l/email-protection#b791948e808c919486878f8c91948e8f8c91948687868c91948686838c91948686828c91948e808c919486878e8c91948687828c91948686838c919482878c919481838c91948687848c919486878e8c91948e808c91948687828c919486878f8c919483818c91948e8e8c91948686868c919486878e8c"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
@@ -1646,7 +1646,7 @@
                     <h4 data-i18n="footer_contact">Contact</h4>
                     <ul>
                         <li><a href="tel:+201276272065" dir="ltr">+20 127 627 2065</a></li>
-                        <li><a href="#" onclick="window.location.href='mailto:albersamir2@gmail.com'; return false;"><span class="__cf_email__" data-cfemail="abcac7c9ced9d8cac6c2d999ebccc6cac2c785c8c4c6">[email&#160;protected]</span></a></li>
+                        <li><a href="/cdn-cgi/l/email-protection#620c0d1b1007043d04180c14502216180c1614101b4c120018" class="rot13-email"><span class="__cf_email__" data-cfemail="f698998f849390a9908c9880c4b6828c988280848fd886948c">[email&#160;protected]</span></a></li>
                         <li><a href="#" data-i18n="location">Egypt & UAE</a></li>
                     </ul>
                 </div>
@@ -1852,6 +1852,16 @@
 
         // Auto-update copyright year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Decode ROT13 emails
+        document.querySelectorAll('.rot13-email').forEach(link => {
+            const encoded = link.textContent;
+            const decoded = encoded.replace(/[a-zA-Z]/g, function(c) {
+                return String.fromCharCode((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
+            });
+            link.textContent = decoded;
+            link.href = 'mailto:' + decoded;
+        });
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
