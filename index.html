@@ -3,30 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Alber Samir - IT Specialist | Computer Software Technician | Data Entry Operator">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Alber Samir - Professional IT Specialist in Egypt & UAE. Expert in Data Entry, Computer Software, Technical Support, and IT Solutions. Contact for freelance services.">
     <meta name="author" content="Alber Samir">
-    <meta name="keywords" content="IT Specialist, Data Entry, Computer Technician, Technical Support, Egypt, UAE">
+    <meta name="keywords" content="IT Specialist, Data Entry, Computer Technician, Technical Support, Egypt, UAE, Freelance IT, Software Maintenance, IT Consultant, البير سمير">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="theme-color" content="#0d47a1">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="canonical" href="https://elqiser00.github.io/Card/">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Alber Samir - IT Specialist">
-    <meta property="og:description" content="IT Specialist with expertise in Data Entry, Computer Software, and Technical Solutions.">
+    <meta property="og:url" content="https://elqiser00.github.io/Card/">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="ar_EG">
+    <meta property="og:site_name" content="Alber Samir - IT Specialist">
+    <meta property="og:title" content="Alber Samir - Professional IT Specialist | Egypt & UAE">
+    <meta property="og:description" content="Professional IT Specialist offering Data Entry, Technical Support, Software Maintenance and IT Solutions in Egypt & UAE.">
     <meta property="og:image" content="https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Alber Samir - IT Specialist">
+    <meta name="twitter:title" content="Alber Samir - Professional IT Specialist">
     <meta name="twitter:description" content="IT Specialist with expertise in Data Entry, Computer Software, and Technical Solutions.">
     <meta name="twitter:image" content="https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg">
     
-    <title>Alber Samir - IT Specialist</title>
+    <title>Alber Samir - IT Specialist | Data Entry Expert | Egypt & UAE</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg">
     <link rel="apple-touch-icon" href="https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg">
     
+    <!-- Preconnect for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="https://raw.githubusercontent.com">
+    <link rel="dns-prefetch" href="https://api.qrserver.com">
+    
+    <!-- Fonts with display swap for better loading -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    
+    <!-- Structured Data (JSON-LD) for SEO -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Alber Samir",
+        "alternateName": "البير سمير",
+        "jobTitle": "IT Specialist",
+        "description": "Professional IT Specialist offering Data Entry, Technical Support, and IT Solutions",
+        "url": "https://elqiser00.github.io/Card/",
+        "image": "https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg",
+        "email": "albersamir2@gmail.com",
+        "telephone": ["+201276272065", "+201060782884", "+971588405335"],
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": ["EG", "AE"]
+        },
+        "sameAs": [
+            "https://wa.me/201276272065",
+            "https://www.facebook.com/ellqiser",
+            "https://t.me/ELQISEER"
+        ],
+        "knowsLanguage": ["Arabic", "English"],
+        "hasOccupation": {
+            "@type": "Occupation",
+            "name": "IT Specialist",
+            "skills": ["Data Entry", "Technical Support", "Software Maintenance", "IT Consulting", "Hardware Support"]
+        }
+    }
+    </script>
     <style>
         /* Base CSS Variables */
         :root {
@@ -513,6 +571,7 @@
             text-align: center;
             transition: var(--transition);
             box-shadow: var(--shadow);
+            will-change: transform;
         }
 
         .service-card:hover {
@@ -529,11 +588,23 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: var(--transition);
         }
 
         .service-icon i {
             font-size: 40px;
             color: var(--primary);
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover .service-icon {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            transform: rotateY(360deg);
+        }
+
+        .service-card:hover .service-icon i {
+            color: white;
+            transform: scale(1.2);
         }
 
         .service-card h3 {
@@ -567,6 +638,7 @@
             transition: var(--transition);
             cursor: pointer;
             position: relative;
+            will-change: transform;
         }
 
         .payment-card:hover {
@@ -616,6 +688,20 @@
             align-items: center;
             justify-content: center;
             font-size: 28px;
+            transition: all 0.4s ease;
+        }
+
+        .payment-card:hover .payment-icon {
+            transform: scale(1.1) rotate(-5deg);
+        }
+
+        .payment-card:hover .payment-icon i {
+            animation: bounce 0.6s ease;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
         }
 
         .payment-card-header.orange .payment-icon {
@@ -750,6 +836,7 @@
             border-radius: 18px;
             transition: var(--transition);
             cursor: pointer;
+            will-change: transform, box-shadow;
         }
 
         .contact-method:hover {
@@ -766,6 +853,20 @@
             justify-content: center;
             color: white;
             font-size: 24px;
+            transition: all 0.4s ease;
+        }
+
+        .contact-method:hover .contact-method-icon {
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .contact-method:hover .contact-method-icon i {
+            animation: pulse 0.6s ease;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
         }
 
         .method-whatsapp { background: linear-gradient(135deg, #25d366, #128c7e); }
@@ -1340,7 +1441,7 @@
             </div>
             <div class="hero-image">
                 <div class="hero-img-wrapper">
-                    <img src="https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg" alt="Alber Samir" class="hero-img" onerror="this.style.display='none'">
+                    <img src="https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg" alt="Alber Samir - Professional IT Specialist in Egypt and UAE" class="hero-img" onerror="this.style.display='none'">
                 </div>
             </div>
         </div>
@@ -1356,7 +1457,7 @@
             </div>
             <div class="about-grid">
                 <div class="about-image">
-                    <img src="https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg" alt="Alber Samir" class="about-img-main" onerror="this.style.display='none'">
+                    <img src="https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg" alt="Alber Samir - IT Specialist Profile Photo" class="about-img-main" loading="lazy" onerror="this.style.display='none'">
                     <div class="about-experience">
                         <h4>5+</h4>
                         <p data-i18n="exp_years">Years of Experience</p>
@@ -1603,7 +1704,7 @@
                 <!-- Business Card -->
                 <div class="business-card">
                     <div class="card-profile">
-                        <img src="https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg" alt="Alber Samir" class="card-avatar" onerror="this.style.display='none'">
+                        <img src="https://raw.githubusercontent.com/elqiser00/Card/refs/heads/main/profile-images/alber-profile.jpg" alt="Alber Samir - IT Specialist" class="card-avatar" loading="lazy" onerror="this.style.display='none'">
                         <h3 data-i18n="profile_name">Alber Samir</h3>
                         <p data-i18n="job_title">IT Specialist</p>
                     </div>
@@ -1896,7 +1997,11 @@
 
         // Load saved preferences
         function loadPreferences() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
+            // Auto detect system theme if no saved preference
+            let savedTheme = localStorage.getItem('theme');
+            if (!savedTheme) {
+                savedTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+            }
             const savedLang = localStorage.getItem('language') || 'en';
             
             document.documentElement.setAttribute('data-theme', savedTheme);
@@ -1904,6 +2009,15 @@
             updateLanguage(savedLang);
             updateThemeIcon(savedTheme);
         }
+        
+        // Listen for system theme changes
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                const newTheme = e.matches ? 'dark' : 'light';
+                document.documentElement.setAttribute('data-theme', newTheme);
+                updateThemeIcon(newTheme);
+            }
+        });
 
         // Theme Toggle
         function toggleTheme() {
