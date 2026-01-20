@@ -1549,7 +1549,7 @@
                             </div>
                             <div class="contact-method-info">
                                 <h4 data-i18n="email">Email</h4>
-                                <p class="rot13-email" data-encoded="nyoerfznv2@tznvy.pbz"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1d736472786f7b67736b2f5d6967736b64336d7f67">[email&#160;protected]</a></p>
+                                <p class="rot13-email" data-encoded="nyoerfznv2@tznvy.pbz"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3e5047515b4c584450480c7e4a44504847104e5c44">[email&#160;protected]</a></p>
                             </div>
                         </div>
                         <div class="contact-method" onclick="openLink('https://t.me/ELQISEER')">
@@ -1603,7 +1603,7 @@
                         <a href="https://wa.me/201276272065" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                         <a href="https://www.facebook.com/ellqiser" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://t.me/ELQISEER" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
-                        <a href="/cdn-cgi/l/email-protection#2503061c121e030614151d1e03061c1d1e03061415141e03061414111e03061414101e03061c121e030614151c1e03061415101e03061414111e030610151e030613111e03061415161e030614151c1e03061c121e03061415101e030614151d1e030611131e03061c1c1e03061414141e030614151c1e" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="#" onclick="window.location.href='mailto:albersamir2@gmail.com'; return false;" title="Email"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
             </div>
@@ -1621,7 +1621,7 @@
                         <a href="https://wa.me/201276272065" target="_blank"><i class="fab fa-whatsapp"></i></a>
                         <a href="https://www.facebook.com/ellqiser" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://t.me/ELQISEER" target="_blank"><i class="fab fa-telegram"></i></a>
-                        <a href="/cdn-cgi/l/email-protection#5d7b7e646a667b7e6c6d65667b7e6465667b7e6c6d6c667b7e6c6c69667b7e6c6c68667b7e646a667b7e6c6d64667b7e6c6d68667b7e6c6c69667b7e686d667b7e6b69667b7e6c6d6e667b7e6c6d64667b7e646a667b7e6c6d68667b7e6c6d65667b7e696b667b7e6464667b7e6c6c6c667b7e6c6d6466"><i class="fas fa-envelope"></i></a>
+                        <a href="#" onclick="window.location.href='mailto:albersamir2@gmail.com'; return false;"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
@@ -1646,7 +1646,7 @@
                     <h4 data-i18n="footer_contact">Contact</h4>
                     <ul>
                         <li><a href="tel:+201276272065" dir="ltr">+20 127 627 2065</a></li>
-                        <li><a href="/cdn-cgi/l/email-protection#f6988f999384908c9880c4b6828c98808fd886948c" class="rot13-email" data-encoded="nyoerfznv2@tznvy.pbz"><span class="__cf_email__" data-cfemail="cba5b2a4aeb9adb1a5bdf98bbfb1a5bdb2e5bba9b1">[email&#160;protected]</span></a></li>
+                        <li><a href="/cdn-cgi/l/email-protection#b9d7c0d6dccbdfc3d7cf8bf9cdc3d7cfc097c9dbc3" class="rot13-email" data-encoded="nyoerfznv2@tznvy.pbz"><span class="__cf_email__" data-cfemail="5c322533392e3a26322a6e1c2826322a25722c3e26">[email&#160;protected]</span></a></li>
                         <li><a href="#" data-i18n="location">Egypt & UAE</a></li>
                     </ul>
                 </div>
@@ -1853,14 +1853,16 @@
         // Auto-update copyright year
         document.getElementById('currentYear').textContent = new Date().getFullYear();
 
-        // Decode ROT13 emails
+        // Decode ROT13 emails (for text display only)
         document.querySelectorAll('.rot13-email').forEach(link => {
             let encoded = link.getAttribute('data-encoded') || link.textContent;
             const decoded = encoded.replace(/[a-zA-Z]/g, function(c) {
                 return String.fromCharCode((c <= 'Z' ? 90 : 122) >= (c = c.charCodeAt(0) + 13) ? c : c - 26);
             });
             link.textContent = decoded;
-            link.href = 'mailto:' + decoded;
+            if (link.tagName === 'A' && link.getAttribute('data-encoded')) {
+                link.href = 'mailto:' + decoded;
+            }
         });
 
         // Initialize
