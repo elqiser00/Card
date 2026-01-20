@@ -573,6 +573,21 @@
             background: linear-gradient(135deg, #f0fdf4, #dcfce7);
         }
 
+        /* Dark mode fixes for payment headers */
+        [data-theme="dark"] .payment-card-header.orange,
+        [data-theme="dark"] .payment-card-header.vodafone,
+        [data-theme="dark"] .payment-card-header.instapay {
+            background: linear-gradient(135deg, #2a2a4a, #1e1e3f);
+        }
+
+        [data-theme="dark"] .payment-name {
+            color: #ffffff;
+        }
+
+        [data-theme="dark"] .payment-country {
+            color: #adb5bd;
+        }
+
         .payment-icon {
             width: 60px;
             height: 60px;
@@ -888,10 +903,30 @@
 
         /* Footer */
         .footer {
-            background: var(--dark);
+            background: #1a1a2e;
             color: white;
-            padding: 80px 25px 30px;
+            padding: 40px 25px 20px;
             transition: var(--transition);
+        }
+
+        /* Footer dark mode text colors */
+        [data-theme="dark"] .footer,
+        [data-theme="dark"] .footer p,
+        [data-theme="dark"] .footer h4,
+        [data-theme="dark"] .footer a {
+            color: #ffffff;
+        }
+
+        [data-theme="dark"] .footer a:hover {
+            color: #ff9800;
+        }
+
+        [data-theme="dark"] .footer-bottom {
+            border-top-color: rgba(255,255,255,0.2);
+        }
+
+        [data-theme="dark"] .footer-brand p {
+            color: rgba(255,255,255,0.8);
         }
 
         .footer-container {
@@ -903,7 +938,7 @@
             display: grid;
             grid-template-columns: 2fr 1fr 1fr 1fr;
             gap: 60px;
-            margin-bottom: 60px;
+            margin-bottom: 30px;
         }
 
         .footer-brand .logo {
@@ -1301,7 +1336,7 @@
                         </div>
                         <div class="info-item">
                             <i class="fas fa-envelope"></i>
-                            <span data-i18n="email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c9a8a5abacbbbaa8a4a0bbfb89aea4a8a0a5e7aaa6a4">[email&#160;protected]</a></span>
+                            <span data-i18n="email"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1b7a77797e69687a767269295b7c767a727735787476">[email&#160;protected]</a></span>
                         </div>
                         <div class="info-item">
                             <i class="fas fa-phone"></i>
@@ -1514,7 +1549,7 @@
                             </div>
                             <div class="contact-method-info">
                                 <h4 data-i18n="email">Email</h4>
-                                <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="eb8a87898e99988a868299d9ab8c868a8287c5888486">[email&#160;protected]</a></p>
+                                <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="61000d03041312000c08135321060c00080d4f020e0c">[email&#160;protected]</a></p>
                             </div>
                         </div>
                         <div class="contact-method" onclick="openLink('https://t.me/ELQISEER')">
@@ -1568,7 +1603,7 @@
                         <a href="https://wa.me/201276272065" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                         <a href="https://www.facebook.com/ellqiser" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://t.me/ELQISEER" target="_blank" title="Telegram"><i class="fab fa-telegram"></i></a>
-                        <a href="/cdn-cgi/l/email-protection#a8c9c4cacddadbc9c5c1da9ae8cfc5c9c1c486cbc7c5" title="Email"><i class="fas fa-envelope"></i></a>
+                        <a href="/cdn-cgi/l/email-protection#4b2a27292e39382a262239790b2c262a222765282426" title="Email"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
             </div>
@@ -1586,7 +1621,7 @@
                         <a href="https://wa.me/201276272065" target="_blank"><i class="fab fa-whatsapp"></i></a>
                         <a href="https://www.facebook.com/ellqiser" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://t.me/ELQISEER" target="_blank"><i class="fab fa-telegram"></i></a>
-                        <a href="/cdn-cgi/l/email-protection#7918151b1c0b0a1814100b4b391e14181015571a1614"><i class="fas fa-envelope"></i></a>
+                        <a href="/cdn-cgi/l/email-protection#81e0ede3e4f3f2e0ece8f3b3c1e6ece0e8edafe2eeec"><i class="fas fa-envelope"></i></a>
                     </div>
                 </div>
                 <div class="footer-links">
@@ -1610,14 +1645,14 @@
                 <div class="footer-links">
                     <h4 data-i18n="footer_contact">Contact</h4>
                     <ul>
-                        <li><a href="tel:+201276272065">+20 127 627 2065</a></li>
-                        <li><a href="/cdn-cgi/l/email-protection#50313c32352223313d39226210373d31393c7e333f3d"><span class="__cf_email__" data-cfemail="f998959b9c8b8a9894908bcbb99e94989095d79a9694">[email&#160;protected]</span></a></li>
+                        <li><a href="tel:+201276272065" dir="ltr">+20 127 627 2065</a></li>
+                        <li><a href="/cdn-cgi/l/email-protection#9afbf6f8ffe8e9fbf7f3e8a8dafdf7fbf3f6b4f9f5f7"><span class="__cf_email__" data-cfemail="9bfaf7f9fee9e8faf6f2e9a9dbfcf6faf2f7b5f8f4f6">[email&#160;protected]</span></a></li>
                         <li><a href="#" data-i18n="location">Egypt & UAE</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Alber Samir. All rights reserved.</p>
+                <p>&copy; <span id="currentYear"></span> Alber Samir. All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -1814,6 +1849,9 @@
         };
 
         let currentLang = 'en';
+
+        // Auto-update copyright year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
 
         // Initialize
         document.addEventListener('DOMContentLoaded', () => {
